@@ -861,3 +861,24 @@ footer{
 /* ===== ABSOLUTE OVERRIDE: image must show ===== */
 
 background-image: url("./images/gallery/brand/skincare_01.jpg");
+/* Price Section */
+#price {
+  background: #fff;
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.price-tag {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 12px 0;
+}
+
+.price.highlight {
+  border: 2px solid #000;
+}
