@@ -882,3 +882,18 @@ background-image: url("./images/gallery/brand/skincare_01.jpg");
 .price.highlight {
   border: 2px solid #000;
 }
+.video-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.video-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
