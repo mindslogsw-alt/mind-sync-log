@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Model Gallery | Mind Sync Log</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header (Same as Index) -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Mind Sync <span class="gradient-text">Log</span></a>
+                <div class="nav-links">
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#talent">Talent</a>
+                    <a href="index.html#brand-concept">Brand</a>
+                    <a href="index.html#services">Services</a>
+                    <a href="index.html#gallery">Gallery</a>
+                    <a href="index.html#pricing">Price</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <a href="index.html#contact" class="btn">About Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Subpage Hero -->
+    <section class="hero"
+        style="min-height: 60vh; background: radial-gradient(circle at center, rgba(189, 0, 255, 0.1) 0%, transparent 70%);">
+        <div class="container hero-content">
+            <h1 class="gradient-text">Product Gallery</h1>
+            <p>商品そのものの魅力を最大限に引き出す、超高精細なAIモデリング。</p>
+            <a href="index.html#gallery" class="btn secondary">Back to Home</a>
+        </div>
+    </section>
+
+    <!-- Skincare Gallery Section -->
+    <section id="beauty" class="works" style="padding-top: 50px;">
+        <div class="container">
+            <h2 class="section-title">Skin Care / <span class="gradient-text">Beauty</span></h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 60px; color: #ccc;">
+                肌のきめ細やかさ、テクスチャーの質感まで忠実に再現。<br>
+                従来のCGでは難しかった「生きた肌」の表現により、化粧品・スキンケアブランドの信頼性を損なうことなく、理想的なビジュアルを提供します。
+            </p>
+
+            <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                <div class="gallery-item">
+                    <img src="assets/skincare_1.jpg" alt="Skincare Model 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/skincare_3.jpg" alt="Skincare Model 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/skincare_4.jpg" alt="Skincare Model 4">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hair Salon Gallery Section -->
+    <section id="hair" class="works" style="padding: 100px 0; background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <h2 class="section-title">Hair Salon / <span class="gradient-text">Color Change</span></h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 60px; color: #ccc;">
+                同一人物の一貫性を保ったまま、ヘアカラーやスタイルを自在に変更可能。<br>
+                サロンモデルの撮影コストを削減し、豊富なバリエーションを短期間で展開できます。
+            </p>
+
+            <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                <div class="gallery-item">
+                    <img src="assets/hair_1.jpg" alt="Hair Color Brown">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/hair_2.jpg" alt="Hair Color Ash">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/hair_3.jpg" alt="Hair Color Pink">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scene Model / Cafe Gallery Section -->
+    <section id="scene" class="works" style="padding: 100px 0;">
+        <div class="container">
+            <h2 class="section-title">Scene Model / <span class="gradient-text">Cafe & Dining</span></h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 60px; color: #ccc;">
+                高級感のあるモダンな空間から、ファミリー向けのカジュアルなカフェシーンまで。<br>
+                グルメサイト（ホットペッパー等）やホームページ、SNS運用素材として幅広く活用いただけます。
+            </p>
+
+            <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                <div class="gallery-item">
+                    <img src="assets/scene_modern.jpg" alt="Modern Styling">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/scene_casual.jpg" alt="Casual Cafe Scene">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/scene_luxury.jpg" alt="Luxury Dinner Scene">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Web & Creative / Corporate Gallery Section -->
+    <section id="corporate" class="works" style="padding: 100px 0; background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <h2 class="section-title">Web & Creative / <span class="gradient-text">Corporate</span></h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 60px; color: #ccc;">
+                企業の顔となるホームページ素材から、アーティスティックなギャラリー用ビジュアルまで。<br>
+                「信頼感」「プレミアム感」「世界観」を演出する、高品質なポートレートを提供します。
+            </p>
+
+            <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                <div class="gallery-item">
+                    <img src="assets/hp_standard.jpg" alt="Standard Corporate Style">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/hp_premium.jpg" alt="Premium Brand Image">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/hp_creative.jpg" alt="Creative Clean Beauty">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Natural & Lifestyle Gallery Section -->
+    <section id="lifestyle" class="works" style="padding: 100px 0;">
+        <div class="container">
+            <h2 class="section-title">Natural / <span class="gradient-text">Lifestyle & Makeup</span></h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 60px; color: #ccc;">
+                ナチュラルメイクや日常のライフスタイルシーン、ポイントメイクのディテールまで。<br>
+                親近感のあるビジュアルで、幅広いターゲット層に訴求するギャラリーを展開可能です。
+            </p>
+
+            <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                <div class="gallery-item">
+                    <img src="assets/style_natural.jpg" alt="Natural Makeup">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/style_point.jpg" alt="Point Makeup Detail">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/style_lifestyle.jpg" alt="Lifestyle Scene">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advertisement / CM Gallery Section -->
+    <section id="cm" class="works" style="padding: 100px 0; background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <h2 class="section-title">Advertisement / <span class="gradient-text">CM & Movie</span></h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 60px; color: #ccc;">
+                ショート動画広告やSNSリール動画も制作可能。<br>
+                縦型動画（9:16）に特化した構成で、スマホユーザーへの訴求力を最大化します。
+            </p>
+
+            <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                <div class="gallery-item"
+                    style="border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 9/16;">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SkXk4T-JZKU" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="gallery-item"
+                    style="border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 9/16;">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/7Vy_6pW1-wU" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="gallery-item"
+                    style="border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 9/16;">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/TjYUT2Wco7A" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 20px; font-size: 0.9em; color: #888;">
+                ※動画が表示されない場合は、以下のリンクから直接ご覧ください。<br>
+                <a href="https://www.youtube.com/shorts/SkXk4T-JZKU" target="_blank"
+                    style="color: #bd00ff; text-decoration: underline;">Video 1</a> /
+                <a href="https://www.youtube.com/shorts/7Vy_6pW1-wU" target="_blank"
+                    style="color: #bd00ff; text-decoration: underline;">Video 2</a> /
+                <a href="https://www.youtube.com/shorts/TjYUT2Wco7A" target="_blank"
+                    style="color: #bd00ff; text-decoration: underline;">Video 3</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- EC / LP Gallery Section -->
+    <section id="lp" class="works" style="padding: 100px 0;">
+        <div class="container">
+            <h2 class="section-title">EC / LP / <span class="gradient-text">Catalog</span></h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 60px; color: #ccc;">
+                商品LPや広告バナーの実制作例。<br>
+                コンバージョンを意識した「売れる」デザインと、商品にマッチしたモデルをご提案します。
+            </p>
+
+            <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+                <div class="gallery-item" style="aspect-ratio: auto;">
+                    <img src="assets/lp_face_wash.jpg" alt="Face Wash LP"
+                        style="width: 100%; height: auto; border-radius: 12px;">
+                </div>
+                <div class="gallery-item" style="aspect-ratio: auto;">
+                    <img src="assets/lp_grape_juice.jpg" alt="Grape Juice LP"
+                        style="width: 100%; height: auto; border-radius: 12px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Mind Sync Log. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <style>
+        .gallery-item {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: 0.5s;
+            display: block;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+    </style>
+</body>
+
+</html>
