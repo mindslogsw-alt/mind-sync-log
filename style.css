@@ -942,3 +942,70 @@ footer {
     pointer-events: none;
 }
 
+/* Hamburger Menu Styles */
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    z-index: 1001; /* Above nav-links overlay */
+}
+
+.hamburger-menu .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+/* Rotate into X */
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: translate(0, 8px) rotate(-45deg);
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: translate(0, -8px) rotate(45deg);
+}
+
+.nav-links a:hover {
+    color: var(--accent-primary);
+}
+
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Hidden off-screen */
+        width: 70%;
+        height: 100vh;
+        background: rgba(5, 5, 5, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s ease-in-out;
+        z-index: 1000;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+        margin: 20px 0;
+    }
+    
+    nav .btn {
+        display: none; /* Hide 'About Us' button in header on mobile if redundant or move inside menu if needed */
+    }
+}
+
