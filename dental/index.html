@@ -309,12 +309,10 @@
                     class="text-xs font-bold text-slate-600 hover:text-brand-600 transition-colors uppercase tracking-widest">Features</a>
                 <a href="#pricing"
                     class="text-xs font-bold text-slate-600 hover:text-brand-600 transition-colors uppercase tracking-widest">Pricing</a>
-                <a href="#flow"
-                    class="text-xs font-bold text-slate-600 hover:text-brand-600 transition-colors uppercase tracking-widest">Workflow</a>
-                <a href="#services"
-                    class="text-xs font-bold text-slate-600 hover:text-brand-600 transition-colors uppercase tracking-widest">Services</a>
                 <a href="#faq"
                     class="text-xs font-bold text-slate-600 hover:text-brand-600 transition-colors uppercase tracking-widest">FAQ</a>
+                class="text-xs font-bold text-slate-600 hover:text-brand-600 transition-colors uppercase
+                tracking-widest">FAQ</a>
                 <a href="#contact"
                     class="text-xs font-bold bg-brand-600 hover:bg-brand-500 text-white px-5 py-2.5 rounded-full transition-all shadow-md shadow-brand-500/20 hover:-translate-y-0.5 uppercase tracking-widest">
                     Contact
@@ -345,12 +343,10 @@
                     class="mobile-nav-link text-sm font-bold text-white/80 hover:text-white transition-colors uppercase tracking-widest py-2">Features</a>
                 <a href="#pricing"
                     class="mobile-nav-link text-sm font-bold text-white/80 hover:text-white transition-colors uppercase tracking-widest py-2">Pricing</a>
-                <a href="#flow"
-                    class="mobile-nav-link text-sm font-bold text-white/80 hover:text-white transition-colors uppercase tracking-widest py-2">Workflow</a>
-                <a href="#services"
-                    class="mobile-nav-link text-sm font-bold text-white/80 hover:text-white transition-colors uppercase tracking-widest py-2">Services</a>
                 <a href="#faq"
                     class="mobile-nav-link text-sm font-bold text-white/80 hover:text-white transition-colors uppercase tracking-widest py-2">FAQ</a>
+                class="mobile-nav-link text-sm font-bold text-white/80 hover:text-white transition-colors uppercase
+                tracking-widest py-2">FAQ</a>
                 <a href="#contact"
                     class="mobile-nav-link text-sm font-bold bg-brand-500 text-white px-5 py-3 rounded-full text-center shadow-lg uppercase tracking-widest">Contact</a>
             </nav>
@@ -907,53 +903,59 @@
     </div>
 
     <!-- 運営情報 (Operator Info) -->
-    <div>
-        <div class="glass p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-            <h4 class="font-bold text-slate-800 mb-6 flex items-center gap-2">
-                <span class="w-1.5 h-6 bg-brand-500 rounded-full"></span>
-                運営情報
-            </h4>
-            <dl class="space-y-4 text-sm">
-                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 border-b border-slate-100 pb-3">
-                    <dt class="text-slate-400 w-24">運営</dt>
-                    <dd class="text-slate-700 font-medium">MindSyncLog</dd>
+    <section id="services">
+        <div id="operator">
+            <div class="glass p-8 rounded-[2rem] border border-slate-200 shadow-sm">
+                <h4 class="font-bold text-slate-800 mb-6 flex items-center gap-2">
+                    <span class="w-1.5 h-6 bg-brand-500 rounded-full"></span>
+                    運営情報
+                </h4>
+                <dl class="space-y-4 text-sm">
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 border-b border-slate-100 pb-3">
+                        <dt class="text-slate-400 w-24">運営</dt>
+                        <dd class="text-slate-700 font-medium">MindSyncLog</dd>
+                    </div>
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 border-b border-slate-100 pb-3">
+                        <dt class="text-slate-400 w-24">代表</dt>
+                        <dd class="text-slate-700 font-medium">和田 智志</dd>
+                    </div>
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 border-b border-slate-100 pb-3">
+                        <dt class="text-slate-400 w-24">所在地</dt>
+                        <dd class="text-slate-700 font-medium text-xs sm:text-sm">岐阜県岐阜市日野南8-9-1</dd>
+                    </div>
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 border-b border-slate-100 pb-3">
+                        <dt class="text-slate-400 w-24">TEL</dt>
+                        <dd class="text-slate-700 font-medium">
+                            <a href="tel:0583370022" class="hover:text-brand-600 transition-colors">058-337-0022</a>
+                        </dd>
+                    </div>
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 border-b border-slate-100 pb-3">
+                        <dt class="text-slate-400 w-24">Mail</dt>
+                        <dd class="text-slate-700 font-medium">
+                            <a href="mailto:mind.s.log.sw@gmail.com"
+                                class="hover:text-brand-600 transition-colors">mind.s.log.sw@gmail.com</a>
+                        </dd>
+                    </div>
+                </dl>
+                <div class="mt-8">
+                    <a href="https://mindsynclog.jp/" target="_blank"
+                        class="inline-flex items-center gap-2 text-xs font-bold text-brand-600 hover:text-brand-800 transition-colors">
+                        運営公式サイト
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
                 </div>
-                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 border-b border-slate-100 pb-3">
-                    <dt class="text-slate-400 w-24">代表</dt>
-                    <dd class="text-slate-700 font-medium">和田 智志</dd>
-                </div>
-                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 border-b border-slate-100 pb-3">
-                    <dt class="text-slate-400 w-24">所在地</dt>
-                    <dd class="text-slate-700 font-medium text-xs sm:text-sm">岐阜県岐阜市日野南8-9-1</dd>
-                </div>
-                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 border-b border-slate-100 pb-3">
-                    <dt class="text-slate-400 w-24">TEL</dt>
-                    <dd class="text-slate-700 font-medium">
-                        <a href="tel:0583370022" class="hover:text-brand-600 transition-colors">058-337-0022</a>
-                    </dd>
-                </div>
-                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 border-b border-slate-100 pb-3">
-                    <dt class="text-slate-400 w-24">Mail</dt>
-                    <dd class="text-slate-700 font-medium">
-                        <a href="mailto:mind.s.log.sw@gmail.com"
-                            class="hover:text-brand-600 transition-colors">mind.s.log.sw@gmail.com</a>
-                    </dd>
-                </div>
-            </dl>
-            <div class="mt-8">
-                <a href="https://mindsynclog.jp/" target="_blank"
-                    class="inline-flex items-center gap-2 text-xs font-bold text-brand-600 hover:text-brand-800 transition-colors">
-                    運営公式サイト
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </a>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
+        </div>
+        </div>
     </section>
 
     <!-- 7. FAQ -->
