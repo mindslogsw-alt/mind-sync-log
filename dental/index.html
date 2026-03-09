@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歯科医院向け Google口コミ返信の半自動化運用サポート | mindsynclog</title>
+    <meta name="description" content="受付や院長の負担を減らしながら、Googleマップ上の印象を美しく整える。歯科医院向けの口コミ返信・半自動化運用サポートのご案内です。">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism Classes */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .glass-dark {
+            background: rgba(12, 74, 110, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* SVG Animation */
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse-soft {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(0.98);
+            }
+        }
+
+        /* Classes for Animations */
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+            animation: float 6s ease-in-out infinite 2s;
+        }
+
+        .animate-pulse-soft {
+            animation: pulse-soft 4s ease-in-out infinite;
+        }
+
+        .timeline-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 4s ease-in-out forwards infinite;
+        }
+
+        /* Background Graphics */
+        .bg-mesh {
+            background-color: #f8fafc;
+            background-image:
+                radial-gradient(at 0% 0%, hsla(200, 100%, 92%, 1) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(210, 100%, 94%, 1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(220, 100%, 95%, 1) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(200, 100%, 95%, 1) 0px, transparent 50%);
+        }
+    </style>
+</head>
+
+<body class="font-sans text-slate-800 bg-slate-50 selection:bg-brand-100 selection:text-brand-900">
+
+    <!-- Navbar -->
+    <header class="fixed top-0 w-full z-50 glass border-b border-white/50 transition-all shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-brand-900 font-bold text-lg tracking-wider">
+                mindsynclog
+                <span
+                    class="text-xs font-normal text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full ml-2 hidden sm:inline-block border border-slate-200">For
+                    Dental</span>
+            </div>
+            <div class="flex gap-4">
+                <a href="#contact"
+                    class="text-sm font-medium bg-brand-600 hover:bg-brand-500 text-white px-5 py-2 rounded-full transition-colors shadow-md shadow-brand-500/30">
+                    無料相談
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. ファーストビュー -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-mesh min-h-[90vh] flex items-center">
+        <!-- Abstract Decoration -->
+        <div
+            class="absolute top-20 left-10 w-64 h-64 bg-brand-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-float pointer-events-none">
+        </div>
+        <div
+            class="absolute top-40 right-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-float-delayed pointer-events-none">
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 w-full">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
+                <!-- Text Content -->
+                <div class="lg:col-span-6 text-center lg:text-left mb-12 lg:mb-0">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 border border-brand-100 text-brand-600 text-sm font-medium mb-6 backdrop-blur-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        医院の信頼を育てる、新しい運用のかたち
+                    </div>
+                    <h1
+                        class="text-3xl sm:text-4xl lg:text-3xl xl:text-4xl font-bold leading-tight mb-6 text-slate-900 tracking-tight">
+                        歯科医院のGoogle口コミ返信を、<br class="hidden xl:block">
+                        <span class="text-brand-600">無理なく半自動化。</span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        受付や院長の負担を減らしながら、Googleマップ上の印象を整え、返信漏れや対応のばらつきを防ぎやすくします。
+                        <span
+                            class="block mt-2 text-sm text-slate-500 font-medium bg-white/50 inline-block px-3 py-1 rounded-md mt-4">✓
+                            ホームページ改善・乗り換え相談にも対応</span>
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#contact"
+                            class="inline-flex justify-center items-center px-8 py-4 text-base font-bold rounded-full text-white bg-brand-600 hover:bg-brand-500 shadow-lg shadow-brand-500/30 transition-all hover:-translate-y-1">
+                            無料で相談する
+                        </a>
+                        <a href="#contact"
+                            class="inline-flex justify-center items-center px-8 py-4 text-base font-bold rounded-full text-brand-700 bg-white border border-brand-200 hover:bg-brand-50 shadow-sm transition-all hover:-translate-y-1">
+                            無料で簡易診断を受ける
+                        </a>
+                    </div>
+                    <!-- Email added below hero CTA -->
+                    <div class="mt-6 text-center lg:text-left text-sm font-medium text-slate-500">
+                        メールでのご相談：<a href="mailto:mind.s.log.sw@gmail.com"
+                            class="text-brand-600 hover:text-brand-800 underline transition-colors">mind.s.log.sw@gmail.com</a>
+                    </div>
+                </div>
+
+                <!-- Visual Content (SVG Animation) -->
+                <div class="lg:col-span-6 relative">
+                    <div class="glass rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/60 relative animate-float">
+                        <!-- SVG graphic illustrating the workflow -->
+                        <svg viewBox="0 0 400 300" class="w-full h-auto drop-shadow-sm" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background Base -->
+                            <rect width="400" height="300" rx="24" fill="transparent" />
+
+                            <!-- Node 1: Review Receive -->
+                            <g class="animate-pulse-soft" style="animation-duration: 3s">
+                                <rect x="30" y="40" width="120" height="60" rx="12" fill="white" stroke="#e2e8f0"
+                                    stroke-width="1" class="shadow-sm" />
+                                <!-- 5 Stars -->
+                                <g fill="#FBBF24">
+                                    <path d="M50 65l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
+                                    <path d="M60 65l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
+                                    <path d="M70 65l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
+                                    <path d="M80 65l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
+                                    <path d="M90 65l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
+                                </g>
+                                <rect x="45" y="78" width="60" height="4" rx="2" fill="#e2e8f0" />
+                                <rect x="45" y="86" width="40" height="4" rx="2" fill="#e2e8f0" />
+                                <text x="90" y="115" class="text-xs font-bold fill-slate-500"
+                                    text-anchor="middle">口コミ受信</text>
+                            </g>
+
+                            <!-- Node 2: AI Draft (Semi-automation) -->
+                            <g class="animate-float" style="animation-duration: 4s; animation-delay: 1s;">
+                                <rect x="250" y="40" width="120" height="60" rx="12" fill="white" stroke="#0ea5e9"
+                                    stroke-width="2" class="shadow-md" />
+                                <path d="M265 65 L275 55 L285 65" stroke="#0ea5e9" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <rect x="295" y="58" width="60" height="6" rx="3" fill="#bae6fd" />
+                                <rect x="295" y="72" width="40" height="6" rx="3" fill="#bae6fd" />
+                                <text x="310" y="115" class="text-xs font-bold fill-brand-600"
+                                    text-anchor="middle">丁寧な返信案を作成</text>
+                            </g>
+
+                            <!-- Node 3: Check & Approve -->
+                            <g class="animate-pulse-soft" style="animation-duration: 3.5s; animation-delay: 1.5s;">
+                                <rect x="140" y="200" width="120" height="60" rx="12" fill="white" stroke="#e2e8f0"
+                                    stroke-width="1" class="shadow-sm" />
+                                <circle cx="160" cy="230" r="12" fill="#10b981" />
+                                <path d="M155 230l3 3 6-6" stroke="white" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <rect x="180" y="222" width="60" height="6" rx="3" fill="#e2e8f0" />
+                                <rect x="180" y="234" width="40" height="6" rx="3" fill="#e2e8f0" />
+                                <text x="200" y="275" class="text-xs font-bold fill-slate-500"
+                                    text-anchor="middle">医院側でワンタップ承認</text>
+                            </g>
+
+                            <!-- Connecting Lines -->
+                            <path d="M150 70 C 200 70, 200 70, 250 70" stroke="#cbd5e1" stroke-width="2"
+                                stroke-dasharray="4 4" class="timeline-line" />
+                            <path d="M310 100 C 310 150, 260 230, 260 230" stroke="#cbd5e1" stroke-width="2"
+                                stroke-dasharray="4 4" class="timeline-line" style="animation-delay: 1s" />
+
+                            <!-- Success indicator -->
+                            <circle cx="70" cy="230" r="24" fill="#f0fdf4" stroke="#10b981" stroke-width="2"
+                                class="animate-pulse-soft" />
+                            <path d="M60 230l5 5 12-12" stroke="#10b981" stroke-width="3" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <text x="70" y="270" class="text-sm font-bold fill-emerald-600"
+                                text-anchor="middle">印象UP</text>
+
+                        </svg>
+                    </div>
+                    <!-- Decor -->
+                    <div
+                        class="absolute -z-10 -bottom-6 -right-6 w-32 h-32 bg-blue-100 rounded-full blur-2xl opacity-80">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. よくある悩み -->
+    <section class="py-24 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16">
+                <span class="text-slate-400 font-bold tracking-widest text-sm uppercase">Challenges</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-3 mb-4">こんなお悩み、ありませんか？</h2>
+                <p class="text-slate-500">Googleマップの口コミは集患に直結すると分かっていても、現場は常に動いています。</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+                <div
+                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-start gap-4 hover:border-slate-200 transition-colors">
+                    <div
+                        class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center flex-shrink-0 text-slate-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <p class="text-slate-700 font-medium pt-2 leading-relaxed">口コミ返信が大事なのは分かるが、どうしても日々の業務の後回しになってしまう</p>
+                </div>
+                <div
+                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-start gap-4 hover:border-slate-200 transition-colors">
+                    <div
+                        class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center flex-shrink-0 text-slate-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                            </path>
+                        </svg>
+                    </div>
+                    <p class="text-slate-700 font-medium pt-2 leading-relaxed">受付スタッフや院長が忙しく、毎回の返信文をゼロから作成するまで手が回らない</p>
+                </div>
+                <div
+                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-start gap-4 hover:border-slate-200 transition-colors">
+                    <div
+                        class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center flex-shrink-0 text-slate-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z">
+                            </path>
+                        </svg>
+                    </div>
+                    <p class="text-slate-700 font-medium pt-2 leading-relaxed">スタッフに任せると、返信の文面やトーンにばらつきが出て、医院のブランドがブレる
+                    </p>
+                </div>
+                <div
+                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-start gap-4 hover:border-slate-200 transition-colors">
+                    <div
+                        class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center flex-shrink-0 text-slate-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
+                            </path>
+                        </svg>
+                    </div>
+                    <p class="text-slate-700 font-medium pt-2 leading-relaxed">Googleマップ上の全体の印象をもっと綺麗に整え、新規来院に繋げたい</p>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center bg-brand-50 rounded-3xl p-8 border border-brand-100">
+                <p class="text-xl sm:text-2xl font-bold text-brand-800">
+                    mindsynclog の運用サポートで、<br class="block sm:hidden">これらの手間を根本から削減します。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 解決できること & 4. 選ばれる理由 -->
+    <section class="py-24 bg-slate-50 border-t border-slate-100 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16">
+                <span class="text-brand-600 font-bold tracking-wider text-sm uppercase">Benefits & Features</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-3 mb-4">無理なく、スマートに印象改善。</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                    システム任せの完全自動ではなく「半自動化」。<br class="hidden sm:block">
+                    人間の確認を一度挟むからこそ、医療機関としての温かみと安心感を守れます。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md hover:border-brand-200 transition-all group">
+                    <div
+                        class="w-14 h-14 bg-brand-50 group-hover:bg-brand-100 rounded-2xl flex items-center justify-center mb-6 text-brand-600 transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">返信案の半自動生成</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        新着口コミを検知し、内容に沿った丁寧な返信案を自動で作成。スタッフは内容を「確認・承認」するだけで完了するため、文章を考える手間と時間をゼロにします。
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md hover:border-brand-200 transition-all group">
+                    <div
+                        class="w-14 h-14 bg-brand-50 group-hover:bg-brand-100 rounded-2xl flex items-center justify-center mb-6 text-brand-600 transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">医院らしい自然なトーン</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        いかにもAI感のある機械的な返信ではなく、貴院特有の言い回しや方針に合わせた自然な文章へ運用設計します。患者様への誠実な姿勢がしっかりと伝わります。
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md hover:border-brand-200 transition-all group">
+                    <div
+                        class="w-14 h-14 bg-brand-50 group-hover:bg-brand-100 rounded-2xl flex items-center justify-center mb-6 text-brand-600 transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">返信漏れを確実ブロック</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        口コミが入ったタイミングで通知を出します。忙しい現場でも「気づかなかった」「放置されていた」を防ぎ、安定したマップ上の印象を美しく維持しやすくします。
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center text-slate-500 font-medium text-sm">
+                ※必要に応じて、ホームページ全体の設計やWeb予約導線の改善も同時にご相談いただけます。
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 導入の流れ -->
+    <section class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16">
+                <span class="text-brand-600 font-bold tracking-wider text-sm uppercase">Simple Workflow</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-3">開始までのわずかなステップ</h2>
+            </div>
+
+            <div class="relative pl-8 sm:pl-0 sm:max-w-2xl sm:mx-auto">
+                <!-- Vertical Line -->
+                <div class="hidden sm:block absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 -ml-px"></div>
+                <div class="sm:hidden absolute left-4 top-0 bottom-0 w-px bg-slate-200"></div>
+
+                <!-- Step 1 -->
+                <div class="relative mb-16 sm:w-1/2 sm:pr-14 sm:text-right group">
+                    <div
+                        class="absolute left-[-28px] sm:left-auto sm:right-[-28px] top-0 w-14 h-14 bg-white rounded-full border-[6px] border-slate-50 flex items-center justify-center z-10 font-bold text-brand-600 shadow-sm group-hover:border-brand-50 transition-colors duration-300">
+                        1</div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-3 pt-2">無料相談・ヒアリング</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">現在の運用状況や、お困りごとを簡単にヒアリングさせていただきます。（オンライン完結）</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative mb-16 sm:w-1/2 sm:ml-auto sm:pl-14 group">
+                    <div
+                        class="absolute left-[-28px] sm:left-[-28px] top-0 w-14 h-14 bg-white rounded-full border-[6px] border-slate-50 flex items-center justify-center z-10 font-bold text-brand-600 shadow-sm group-hover:border-brand-50 transition-colors duration-300">
+                        2</div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-3 pt-2">現状確認とご提案</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Googleマップの状況やHP導線等をふまえ、最適なプランと運用イメージをご提案します。</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative mb-16 sm:w-1/2 sm:pr-14 sm:text-right group">
+                    <div
+                        class="absolute left-[-28px] sm:left-auto sm:right-[-28px] top-0 w-14 h-14 bg-white rounded-full border-[6px] border-slate-50 flex items-center justify-center z-10 font-bold text-brand-600 shadow-sm group-hover:border-brand-50 transition-colors duration-300">
+                        3</div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-3 pt-2">運用方針・トーンの設定</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">貴院らしい言葉遣いや、定型文のベースとなる方針をカスタマイズ設定しシステムに同期させます。</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative sm:w-1/2 sm:ml-auto sm:pl-14 group">
+                    <div
+                        class="absolute left-[-28px] sm:left-[-28px] top-0 w-14 h-14 bg-brand-600 rounded-full border-[6px] border-brand-100 flex items-center justify-center z-10 font-bold text-white shadow-lg shadow-brand-500/40">
+                        4</div>
+                    <h4 class="text-lg font-bold text-brand-600 mb-3 pt-2">運用スタート</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed font-medium">
+                        初期設定完了後、半自動化されたスムーズな口コミ返信運用が始まります。毎日の確認の手間が激減します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 料金プラン -->
+    <section class="py-24 bg-[#0a1526] text-white relative overflow-hidden" id="pricing">
+        <!-- Abstract Decoration for Dark Mode -->
+        <div
+            class="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-brand-800 rounded-full mix-blend-screen filter blur-[120px] opacity-40 pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-blue-900 rounded-full mix-blend-screen filter blur-[120px] opacity-30 pointer-events-none">
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-brand-400 font-bold tracking-wider text-sm uppercase">Simple Pricing</span>
+                <h2 class="text-2xl sm:text-4xl font-bold mt-3 mb-6">医院の規模に合わせた3つのプラン</h2>
+                <p class="text-slate-400 max-w-xl mx-auto">明瞭な月額制で、継続的な印象改善とWeb導線強化をサポートします。</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto items-start">
+
+                <!-- Light Plan -->
+                <div class="glass-dark p-8 rounded-[2rem] border border-white/5 hover:bg-white/5 transition-colors">
+                    <div class="text-slate-300 font-bold mb-2 tracking-wide">ライト</div>
+                    <div class="text-sm text-slate-400 mb-4 h-10">費用を抑えて返信漏れを防ぎたい医院様へ</div>
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-4xl font-bold">¥19,800</span>
+                        <span class="text-slate-500 text-sm">/月</span>
+                    </div>
+                    <div class="text-sm text-slate-400 mb-8 pb-8 border-b border-white/10 flex justify-between">
+                        <span>初期費用</span>
+                        <span class="text-white font-medium">¥30,000</span>
+                    </div>
+                    <ul class="space-y-4 text-sm text-slate-300">
+                        <li class="flex items-start gap-3">
+                            <span class="text-brand-400 mt-0.5">✓</span>
+                            <span>月間口コミ上限 <strong>30件</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brand-400 mt-0.5">✓</span>
+                            <span>返信案の半自動作成</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brand-400 mt-0.5">✓</span>
+                            <span>新着通知・ワンタップ承認フロー</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brand-400 mt-0.5">✓</span>
+                            <span>簡易運用レポート</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Standard Plan (Recommended) -->
+                <div
+                    class="bg-gradient-to-br from-brand-600 to-brand-900 p-8 rounded-[2rem] transform lg:-translate-y-4 shadow-2xl relative border border-brand-400/30 ring-1 ring-white/10">
+                    <div
+                        class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white text-brand-900 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
+                        一番おすすめ
+                    </div>
+                    <div class="text-brand-100 font-bold mb-2 tracking-wide mt-2">スタンダード</div>
+                    <div class="text-sm text-brand-200/80 mb-4 h-10">トーンを整え、医院ブランドを育てたい医院様へ</div>
+                    <div class="flex items-baseline gap-1 mb-8 text-white">
+                        <span class="text-5xl font-bold tracking-tight">¥39,800</span>
+                        <span class="text-brand-200 text-sm">/月</span>
+                    </div>
+                    <div class="text-sm text-brand-100 mb-8 pb-8 border-b border-brand-400/20 flex justify-between">
+                        <span>初期費用</span>
+                        <span class="text-white font-bold">¥50,000</span>
+                    </div>
+                    <ul class="space-y-4 text-sm text-white font-medium">
+                        <li class="flex items-start gap-3">
+                            <span class="text-yellow-400 mt-0.5">✓</span>
+                            <span>月間口コミ上限 <strong>100件</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-yellow-400 mt-0.5">✓</span>
+                            <span>返信案の半自動作成・通知・承認</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-yellow-400 mt-0.5">✓</span>
+                            <span><strong>医院専用トーン（文体）調整・AI学習</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-yellow-400 mt-0.5">✓</span>
+                            <span>月次運用改善提案</span>
+                        </li>
+                    </ul>
+                    <a href="#contact"
+                        class="mt-10 block w-full bg-white text-brand-800 text-center font-bold py-3.5 rounded-full hover:bg-brand-50 transition-colors shadow-lg">
+                        このプランで相談する
+                    </a>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="glass-dark p-8 rounded-[2rem] border border-white/5 hover:bg-white/5 transition-colors">
+                    <div class="text-slate-300 font-bold mb-2 tracking-wide">プレミアム</div>
+                    <div class="text-sm text-slate-400 mb-4 h-10">複数分院の管理やWeb導線全体を改善したい医院様へ</div>
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-4xl font-bold">¥69,800</span>
+                        <span class="text-slate-500 text-sm">/月</span>
+                    </div>
+                    <div class="text-sm text-slate-400 mb-8 pb-8 border-b border-white/10 flex justify-between">
+                        <span>初期費用</span>
+                        <span class="text-white font-medium">¥100,000</span>
+                    </div>
+                    <ul class="space-y-4 text-sm text-slate-300">
+                        <li class="flex items-start gap-3">
+                            <span class="text-brand-400 mt-0.5">✓</span>
+                            <span>月間口コミ上限 <strong>300件</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brand-400 mt-0.5">✓</span>
+                            <span>スタンダードプランの全機能</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brand-400 mt-0.5">✓</span>
+                            <span>複数院（分院）の一括返信対応</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brand-400 mt-0.5">✓</span>
+                            <span>FAQ整備・LINE/再来院導線テンプレ整備</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- Sub service note -->
+            <div class="mt-16 text-center">
+                <div
+                    class="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-sm text-slate-300 backdrop-blur-sm">
+                    <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                    <span>ホームページ制作・乗り換え相談にも対応しております。お気軽にお申し付けください。</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. サブサービス案内詳細 -->
+    <section class="py-16 bg-white border-b border-slate-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div
+                class="bg-gradient-to-r from-slate-50 to-brand-50 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center gap-8 border border-brand-100/50 shadow-sm relative overflow-hidden">
+                <!-- BG decor -->
+                <div
+                    class="absolute right-0 top-0 w-32 h-full opacity-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-400 via-transparent to-transparent pointer-events-none">
+                </div>
+
+                <div class="flex-shrink-0 relative z-10">
+                    <div
+                        class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm text-brand-500 border border-brand-100">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="text-center md:text-left relative z-10">
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">ホームページ制作・乗り換え相談にも対応</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                        口コミ対応の半自動化だけでなく、根本的な集患の器となるWebサイト全体の設計も見直しませんか？
+                        古いホームページの改修や、Web予約システムの最適化、LINEを活用した再来院導線の改善設計も承ります。
+                    </p>
+                    <p class="text-sm text-brand-700 font-medium">
+                        「患者様にとってわかりやすく、スタッフ様が更新しやすい構成」へ再設計いたします。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FAQ -->
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16">
+                <span class="text-brand-600 font-bold tracking-wider text-sm uppercase">FAQ</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">よくあるご質問</h2>
+            </div>
+
+            <div class="space-y-5">
+                <div
+                    class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="text-[1.05rem] font-bold text-slate-800 mb-3 flex items-start gap-3">
+                        <span class="text-brand-500 font-black">Q.</span>
+                        システムによる完全自動返信ですか？
+                    </h4>
+                    <p class="text-sm sm:text-base text-slate-600 leading-relaxed pl-7">
+                        <span class="text-slate-400 font-bold mr-2">A.</span>
+                        いいえ、完全自動ではありません。システムが精度の高い返信草案を作成した後、必ず医院の責任者様やスタッフ様に一度内容を確認（承認）していただく「半自動化」の仕組みになっております。これにより、機械的すぎない誠実なご対応と医療機関としての温かみを守れます。
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="text-[1.05rem] font-bold text-slate-800 mb-3 flex items-start gap-3">
+                        <span class="text-brand-500 font-black">Q.</span>
+                        当院らしい言い回しや方針に合わせられますか？
+                    </h4>
+                    <p class="text-sm sm:text-base text-slate-600 leading-relaxed pl-7">
+                        <span class="text-slate-400 font-bold mr-2">A.</span>
+                        はい、可能です。初期設定の段階でトーン＆マナー（文体や院長の口ぐせなど）をしっかりとすり合わせます。運用を続けることで、より貴院に合った自然な文章が出力されるよう調整を行っていきます。
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="text-[1.05rem] font-bold text-slate-800 mb-3 flex items-start gap-3">
+                        <span class="text-brand-500 font-black">Q.</span>
+                        クレームなどネガティブな口コミにも対応できますか？
+                    </h4>
+                    <p class="text-sm sm:text-base text-slate-600 leading-relaxed pl-7">
+                        <span class="text-slate-400 font-bold mr-2">A.</span>
+                        はい、対応可能です。厳しいご意見に対しては、決して感情的にならず、真摯で定型的なお詫びと今後の改善策を示す手堅い返信案を生成します。最終確認は医院様でじっくり行っていただけますので、トラブルを未然に防ぎやすくなります。
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="text-[1.05rem] font-bold text-slate-800 mb-3 flex items-start gap-3">
+                        <span class="text-brand-500 font-black">Q.</span>
+                        個人開業の小規模な歯科医院でも依頼できますか？
+                    </h4>
+                    <p class="text-sm sm:text-base text-slate-600 leading-relaxed pl-7">
+                        <span class="text-slate-400 font-bold mr-2">A.</span>
+                        もちろんです。むしろ、スタッフ人数が限られ、院長先生が診療で常にお忙しい医院様にこそ、この運用代行による「思考と手間の削減効果」を高く実感していただけます。
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="text-[1.05rem] font-bold text-slate-800 mb-3 flex items-start gap-3">
+                        <span class="text-brand-500 font-black">Q.</span>
+                        ホームページ改修や予約導線だけの相談も可能ですか？
+                    </h4>
+                    <p class="text-sm sm:text-base text-slate-600 leading-relaxed pl-7">
+                        <span class="text-slate-400 font-bold mr-2">A.</span>
+                        はい、承っております。口コミ運用と並行してのご案内はもちろん、ホームページのリニューアルやLINE公式アカウントの導線整備単独でも、貴院の現在の課題に合わせた最適なご案内が可能です。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. 最終CTA -->
+    <section class="py-32 bg-slate-900 relative overflow-hidden text-center" id="contact">
+        <!-- Decoration -->
+        <div
+            class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MiIgaGVpZ2h0PSI0MiI+CgkJPGcgZmlsbD0iIzA4MjlhNiIgZmlsbC1vcGFjaXR5PSIwLjEiCgkJCTxwb2x5Z29uIHBvaW50cz0iMjEgMCA0MiAyMSAyMSA0MiAwIDIxIi8+CgkJPC9nPgoJPC9zdmc+')] opacity-20">
+        </div>
+        <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-t from-slate-900 via-transparent to-transparent z-0">
+        </div>
+        <div
+            class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-600 rounded-full mix-blend-screen filter blur-[150px] opacity-20 pointer-events-none">
+        </div>
+
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
+            <h2 class="text-3xl sm:text-5xl font-bold text-white mb-8 leading-tight tracking-tight">
+                まずは無料で、<br class="block sm:hidden">今の運用を<br class="hidden sm:block">確認しませんか？
+            </h2>
+            <p class="text-slate-300 mb-12 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+                歯科医院向けに、口コミ返信の半自動化からホームページ改善までワンストップでご相談いただけます。
+            </p>
+            <div class="flex flex-col sm:flex-row gap-5 justify-center mt-8">
+                <a href="mailto:mind.s.log.sw@gmail.com"
+                    class="inline-flex justify-center items-center px-10 py-5 text-lg font-bold rounded-full text-brand-900 bg-white hover:bg-slate-50 shadow-2xl transition-all hover:scale-105">
+                    無料相談はこちら
+                </a>
+                <a href="mailto:mind.s.log.sw@gmail.com"
+                    class="inline-flex justify-center items-center px-10 py-5 text-lg font-bold rounded-full text-white bg-transparent border border-white/30 hover:bg-white/10 backdrop-blur-sm transition-all hover:scale-105">
+                    無料で簡易診断を受ける
+                </a>
+            </div>
+            <!-- Email Address Contact -->
+            <div class="mt-12 text-center text-slate-300">
+                <p class="text-sm tracking-widest mb-2 font-medium">メールでのご相談はこちら：</p>
+                <a href="mailto:mind.s.log.sw@gmail.com"
+                    class="inline-flex items-center gap-2 text-xl font-bold text-white hover:text-brand-300 transition-colors">
+                    <svg class="w-6 h-6 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    mind.s.log.sw@gmail.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-slate-500 py-12 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+            <div class="font-bold text-slate-300 text-xl mb-2 tracking-widest uppercase">mindsynclog</div>
+            <div class="text-xs mb-6 tracking-wide">AI Talent Agency & DX/AI Tool Development</div>
+            <p class="text-xs">© 2026 MindSyncLog Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
