@@ -58,56 +58,208 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* SVG Animation */
-        @keyframes dash {
-            to {
-                stroke-dashoffset: 0;
+        /* SVG Sequence Animation */
+        @keyframes slideInDownSeq {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
             }
-        }
 
-        @keyframes float {
-
-            0%,
-            100% {
+            10%,
+            90% {
+                opacity: 1;
                 transform: translateY(0);
             }
 
-            50% {
-                transform: translateY(-10px);
+            95%,
+            100% {
+                opacity: 0;
+                transform: translateY(0);
             }
         }
 
-        @keyframes pulse-soft {
+        @keyframes slideInRightSeq {
 
             0%,
+            20% {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            30%,
+            90% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            95%,
             100% {
+                opacity: 0;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes popInSeq {
+
+            0%,
+            45% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            55%,
+            90% {
                 opacity: 1;
                 transform: scale(1);
             }
 
-            50% {
-                opacity: 0.8;
-                transform: scale(0.98);
+            95%,
+            100% {
+                opacity: 0;
+                transform: scale(1);
             }
         }
 
-        /* Classes for Animations */
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
+        @keyframes checkMarkSeq {
+
+            0%,
+            55% {
+                stroke-dasharray: 40;
+                stroke-dashoffset: 40;
+            }
+
+            65%,
+            90% {
+                stroke-dashoffset: 0;
+            }
+
+            95%,
+            100% {
+                stroke-dasharray: 40;
+                stroke-dashoffset: 40;
+                opacity: 0;
+            }
         }
 
-        .animate-float-delayed {
-            animation: float 6s ease-in-out infinite 2s;
+        @keyframes badgePopSeq {
+
+            0%,
+            75% {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            85%,
+            90% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+                transform: scale(1);
+            }
         }
 
-        .animate-pulse-soft {
-            animation: pulse-soft 4s ease-in-out infinite;
+        @keyframes drawLine1 {
+
+            0%,
+            15% {
+                opacity: 0;
+                stroke-dasharray: 120;
+                stroke-dashoffset: 120;
+            }
+
+            25%,
+            90% {
+                opacity: 1;
+                stroke-dashoffset: 0;
+                stroke-dasharray: 120;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
 
-        .timeline-line {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: dash 4s ease-in-out forwards infinite;
+        @keyframes drawLine2 {
+
+            0%,
+            40% {
+                opacity: 0;
+                stroke-dasharray: 120;
+                stroke-dashoffset: 120;
+            }
+
+            50%,
+            90% {
+                opacity: 1;
+                stroke-dashoffset: 0;
+                stroke-dasharray: 120;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes drawLine3 {
+
+            0%,
+            70% {
+                opacity: 0;
+                stroke-dasharray: 120;
+                stroke-dashoffset: 120;
+            }
+
+            80%,
+            90% {
+                opacity: 1;
+                stroke-dashoffset: 0;
+                stroke-dasharray: 120;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .seq-1 {
+            animation: slideInDownSeq 10s infinite;
+        }
+
+        .seq-2 {
+            animation: slideInRightSeq 10s infinite;
+        }
+
+        .seq-3 {
+            animation: popInSeq 10s infinite;
+            transform-origin: 310px 235px;
+        }
+
+        .seq-check {
+            animation: checkMarkSeq 10s infinite;
+        }
+
+        .seq-4 {
+            animation: badgePopSeq 10s infinite;
+            transform-origin: 90px 235px;
+        }
+
+        .seq-line-1 {
+            animation: drawLine1 10s infinite;
+        }
+
+        .seq-line-2 {
+            animation: drawLine2 10s infinite;
+        }
+
+        .seq-line-3 {
+            animation: drawLine3 10s infinite;
         }
 
         /* Background Graphics */
@@ -202,61 +354,73 @@
                             <rect width="400" height="300" rx="24" fill="transparent" />
 
                             <!-- Node 1: Review Receive -->
-                            <g class="animate-pulse-soft" style="animation-duration: 3s">
-                                <rect x="30" y="40" width="120" height="60" rx="12" fill="white" stroke="#e2e8f0"
+                            <g class="seq-1">
+                                <rect x="30" y="40" width="120" height="70" rx="8" fill="white" stroke="#e2e8f0"
                                     stroke-width="1" class="shadow-sm" />
-                                <!-- 5 Stars -->
                                 <g fill="#FBBF24">
-                                    <path d="M50 65l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
-                                    <path d="M60 65l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
-                                    <path d="M70 65l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
-                                    <path d="M80 65l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
-                                    <path d="M90 65l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
+                                    <path d="M50 60l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
+                                    <path d="M60 60l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
+                                    <path d="M70 60l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
+                                    <path d="M80 60l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
+                                    <path d="M90 60l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" />
                                 </g>
-                                <rect x="45" y="78" width="60" height="4" rx="2" fill="#e2e8f0" />
-                                <rect x="45" y="86" width="40" height="4" rx="2" fill="#e2e8f0" />
-                                <text x="90" y="115" class="text-xs font-bold fill-slate-500"
-                                    text-anchor="middle">口コミ受信</text>
+                                <rect x="45" y="75" width="80" height="4" rx="2" fill="#e2e8f0" />
+                                <rect x="45" y="85" width="50" height="4" rx="2" fill="#e2e8f0" />
+                                <text x="90" y="130" class="text-xs font-bold fill-slate-500" text-anchor="middle">①
+                                    口コミ受信</text>
                             </g>
 
-                            <!-- Node 2: AI Draft (Semi-automation) -->
-                            <g class="animate-float" style="animation-duration: 4s; animation-delay: 1s;">
-                                <rect x="250" y="40" width="120" height="60" rx="12" fill="white" stroke="#0ea5e9"
+                            <!-- Line 1 -> 2 -->
+                            <g class="seq-line-1">
+                                <path d="M160 75 L 235 75" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4" />
+                                <polygon points="235,71 243,75 235,79" fill="#cbd5e1" />
+                            </g>
+
+                            <!-- Node 2: AI Draft -->
+                            <g class="seq-2">
+                                <rect x="250" y="40" width="120" height="70" rx="8" fill="white" stroke="#0ea5e9"
                                     stroke-width="2" class="shadow-md" />
                                 <path d="M265 65 L275 55 L285 65" stroke="#0ea5e9" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" />
-                                <rect x="295" y="58" width="60" height="6" rx="3" fill="#bae6fd" />
-                                <rect x="295" y="72" width="40" height="6" rx="3" fill="#bae6fd" />
-                                <text x="310" y="115" class="text-xs font-bold fill-brand-600"
-                                    text-anchor="middle">丁寧な返信案を作成</text>
+                                <rect x="295" y="60" width="60" height="6" rx="3" fill="#bae6fd" />
+                                <rect x="295" y="75" width="40" height="6" rx="3" fill="#bae6fd" />
+                                <text x="310" y="130" class="text-xs font-bold fill-brand-600" text-anchor="middle">②
+                                    返信案生成</text>
                             </g>
 
-                            <!-- Node 3: Check & Approve -->
-                            <g class="animate-pulse-soft" style="animation-duration: 3.5s; animation-delay: 1.5s;">
-                                <rect x="140" y="200" width="120" height="60" rx="12" fill="white" stroke="#e2e8f0"
+                            <!-- Line 2 -> 3 -->
+                            <g class="seq-line-2">
+                                <path d="M310 145 L 310 185" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4" />
+                                <polygon points="306,185 310,193 314,185" fill="#cbd5e1" />
+                            </g>
+
+                            <!-- Node 3: Approve -->
+                            <g class="seq-3">
+                                <rect x="250" y="200" width="120" height="70" rx="8" fill="white" stroke="#e2e8f0"
                                     stroke-width="1" class="shadow-sm" />
-                                <circle cx="160" cy="230" r="12" fill="#10b981" />
-                                <path d="M155 230l3 3 6-6" stroke="white" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <rect x="180" y="222" width="60" height="6" rx="3" fill="#e2e8f0" />
-                                <rect x="180" y="234" width="40" height="6" rx="3" fill="#e2e8f0" />
-                                <text x="200" y="275" class="text-xs font-bold fill-slate-500"
-                                    text-anchor="middle">医院側でワンタップ承認</text>
+                                <circle cx="280" cy="235" r="14" fill="#10b981" />
+                                <path d="M275 235l3 3 7-7" stroke="white" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round" fill="none" class="seq-check" />
+                                <rect x="305" y="225" width="50" height="6" rx="3" fill="#e2e8f0" />
+                                <rect x="305" y="240" width="30" height="6" rx="3" fill="#e2e8f0" />
+                                <text x="310" y="290" class="text-xs font-bold fill-emerald-600" text-anchor="middle">③
+                                    医院で承認</text>
                             </g>
 
-                            <!-- Connecting Lines -->
-                            <path d="M150 70 C 200 70, 200 70, 250 70" stroke="#cbd5e1" stroke-width="2"
-                                stroke-dasharray="4 4" class="timeline-line" />
-                            <path d="M310 100 C 310 150, 260 230, 260 230" stroke="#cbd5e1" stroke-width="2"
-                                stroke-dasharray="4 4" class="timeline-line" style="animation-delay: 1s" />
+                            <!-- Line 3 -> 4 -->
+                            <g class="seq-line-3">
+                                <path d="M240 235 L 165 235" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4" />
+                                <polygon points="165,231 157,235 165,239" fill="#cbd5e1" />
+                            </g>
 
-                            <!-- Success indicator -->
-                            <circle cx="70" cy="230" r="24" fill="#f0fdf4" stroke="#10b981" stroke-width="2"
-                                class="animate-pulse-soft" />
-                            <path d="M60 230l5 5 12-12" stroke="#10b981" stroke-width="3" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                            <text x="70" y="270" class="text-sm font-bold fill-emerald-600"
-                                text-anchor="middle">印象UP</text>
+                            <!-- Node 4: Success -->
+                            <g class="seq-4">
+                                <circle cx="90" cy="235" r="28" fill="#f0fdf4" stroke="#10b981" stroke-width="2" />
+                                <path d="M78 235l7 7 15-15" stroke="#10b981" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round" fill="none" />
+                                <text x="90" y="290" class="text-xs font-bold fill-emerald-600" text-anchor="middle">④
+                                    投稿完了＆印象UP！</text>
+                            </g>
 
                         </svg>
                     </div>
@@ -331,8 +495,40 @@
 
             <div class="mt-16 text-center bg-brand-50 rounded-3xl p-8 border border-brand-100">
                 <p class="text-xl sm:text-2xl font-bold text-brand-800">
-                    mindsynclog の運用サポートで、<br class="block sm:hidden">これらの手間を根本から削減します。
+                    mindsynclog の運用サポートで、<br class="block sm:hidden">これらの負担を大きく軽減します。
                 </p>
+            </div>
+
+            <!-- Target Profile Card -->
+            <div class="mt-12 bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
+                <h3 class="text-lg font-bold text-slate-800 mb-6 flex items-center justify-center gap-2">
+                    <svg class="w-6 h-6 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                        </path>
+                    </svg>
+                    こんな歯科医院様から多数ご相談いただいています
+                </h3>
+                <div class="grid sm:grid-cols-3 gap-4">
+                    <div
+                        class="flex items-start gap-3 bg-slate-50 p-5 rounded-2xl hover:bg-slate-100 transition-colors">
+                        <span class="text-brand-500 font-bold mt-0.5 tracking-tight flex-shrink-0 text-xl">✓</span>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">開業・リニューアル直後で、マップの第一印象を最初から美しく整えたい
+                        </p>
+                    </div>
+                    <div
+                        class="flex items-start gap-3 bg-slate-50 p-5 rounded-2xl hover:bg-slate-100 transition-colors">
+                        <span class="text-brand-500 font-bold mt-0.5 tracking-tight flex-shrink-0 text-xl">✓</span>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">
+                            日々の診療が忙しく、数ヶ月前の口コミすらどうしても放置してしまっている</p>
+                    </div>
+                    <div
+                        class="flex items-start gap-3 bg-slate-50 p-5 rounded-2xl hover:bg-slate-100 transition-colors">
+                        <span class="text-brand-500 font-bold mt-0.5 tracking-tight flex-shrink-0 text-xl">✓</span>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">良い口コミを増やしたいが、まずはしっかり返信する土台と体制を作りたい
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -362,7 +558,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-slate-800 mb-4">返信案の半自動生成</h3>
                     <p class="text-slate-600 leading-relaxed text-sm">
-                        新着口コミを検知し、内容に沿った丁寧な返信案を自動で作成。スタッフは内容を「確認・承認」するだけで完了するため、文章を考える手間と時間をゼロにします。
+                        新着口コミを検知し、内容に沿った丁寧な返信案を自動で作成。スタッフは内容を「確認・承認」するだけで完了するため、文章を考える手間と時間を大幅に減らします。
                     </p>
                 </div>
 
@@ -394,7 +590,7 @@
                             </path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4">返信漏れを確実ブロック</h3>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">返信漏れを防ぎやすく</h3>
                     <p class="text-slate-600 leading-relaxed text-sm">
                         口コミが入ったタイミングで通知を出します。忙しい現場でも「気づかなかった」「放置されていた」を防ぎ、安定したマップ上の印象を美しく維持しやすくします。
                     </p>
@@ -706,7 +902,7 @@
     </section>
 
     <!-- 9. 最終CTA -->
-    <section class="py-32 bg-slate-900 relative overflow-hidden text-center" id="contact">
+    <section class="py-32 bg-slate-900 relative overflow-hidden" id="contact">
         <!-- Decoration -->
         <div
             class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MiIgaGVpZ2h0PSI0MiI+CgkJPGcgZmlsbD0iIzA4MjlhNiIgZmlsbC1vcGFjaXR5PSIwLjEiCgkJCTxwb2x5Z29uIHBvaW50cz0iMjEgMCA0MiAyMSAyMSA0MiAwIDIxIi8+CgkJPC9nPgoJPC9zdmc+')] opacity-20">
@@ -718,29 +914,116 @@
             class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-600 rounded-full mix-blend-screen filter blur-[150px] opacity-20 pointer-events-none">
         </div>
 
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
-            <h2 class="text-3xl sm:text-5xl font-bold text-white mb-8 leading-tight tracking-tight">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+            <h2 class="text-3xl sm:text-5xl font-bold text-white mb-6 leading-tight tracking-tight">
                 まずは無料で、<br class="block sm:hidden">今の運用を<br class="hidden sm:block">確認しませんか？
             </h2>
-            <p class="text-slate-300 mb-12 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-                歯科医院向けに、口コミ返信の半自動化からホームページ改善までワンストップでご相談いただけます。
+            <p class="text-slate-300 mb-8 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+                少しでも気になりましたら、まずは現状の課題感をお聞かせください。<br class="hidden sm:block">
+                歯科医院特有のお悩みに沿って、最適な運用方法をご案内します。
             </p>
-            <div class="flex flex-col sm:flex-row gap-5 justify-center mt-8">
-                <a href="mailto:mind.s.log.sw@gmail.com"
-                    class="inline-flex justify-center items-center px-10 py-5 text-lg font-bold rounded-full text-brand-900 bg-white hover:bg-slate-50 shadow-2xl transition-all hover:scale-105">
-                    無料相談はこちら
-                </a>
-                <a href="mailto:mind.s.log.sw@gmail.com"
-                    class="inline-flex justify-center items-center px-10 py-5 text-lg font-bold rounded-full text-white bg-transparent border border-white/30 hover:bg-white/10 backdrop-blur-sm transition-all hover:scale-105">
-                    無料で簡易診断を受ける
-                </a>
+
+            <!-- Microcopy & Diagnosis Info -->
+            <div class="flex flex-col md:flex-row gap-6 justify-center items-stretch mb-12 text-left">
+                <!-- Free Diagnosis Box -->
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl flex-1 max-w-sm mx-auto">
+                    <div class="flex items-center gap-2 mb-4 text-brand-300 font-bold">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
+                            </path>
+                        </svg>
+                        無料簡易診断でわかること
+                    </div>
+                    <ul class="text-white/90 text-sm space-y-3">
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-400 mt-0.5">•</span>
+                            返信漏れや対応漏れの有無
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-400 mt-0.5">•</span>
+                            返信トーンのばらつき確認
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-400 mt-0.5">•</span>
+                            Googleマップ上の印象改善余地
+                        </li>
+                    </ul>
+                </div>
+                <!-- Reassurance Box -->
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl flex-1 max-w-sm mx-auto flex flex-col justify-center">
+                    <ul class="text-white/90 font-medium space-y-4">
+                        <li class="flex items-center gap-3">
+                            <span class="bg-brand-500/30 text-brand-300 p-1 rounded-full"><svg class="w-4 h-4"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span>
+                            30秒で簡単に送信できます
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="bg-brand-500/30 text-brand-300 p-1 rounded-full"><svg class="w-4 h-4"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span>
+                            まずは現状確認だけでもOKです
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="bg-brand-500/30 text-brand-300 p-1 rounded-full"><svg class="w-4 h-4"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span>
+                            ご不要ならその後の営業連絡は控えます
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <!-- Email Address Contact -->
-            <div class="mt-12 text-center text-slate-300">
-                <p class="text-sm tracking-widest mb-2 font-medium">メールでのご相談はこちら：</p>
+
+            <!-- Contact Form -->
+            <div
+                class="max-w-2xl mx-auto bg-white rounded-3xl p-8 sm:p-10 shadow-2xl text-left border border-slate-100">
+                <form name="contact" method="POST" data-netlify="true" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">医院名</label>
+                            <input type="text" name="clinic" placeholder="例：マインドシンクロ歯科" required
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all outline-none bg-slate-50 focus:bg-white text-slate-800">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">ご担当者名</label>
+                            <input type="text" name="name" placeholder="例：和田 智志" required
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all outline-none bg-slate-50 focus:bg-white text-slate-800">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">メールアドレス</label>
+                        <input type="email" name="email" placeholder="例：mind.s.log.sw@gmail.com" required
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all outline-none bg-slate-50 focus:bg-white text-slate-800">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">ご相談内容（任意）</label>
+                        <textarea name="message" rows="3" placeholder="口コミ返信に関するお悩みや、HP改善など、気になっていることをご記入ください。"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all outline-none bg-slate-50 focus:bg-white text-slate-800 resize-none"></textarea>
+                    </div>
+                    <div class="pt-2 text-center">
+                        <button type="submit"
+                            class="w-full sm:w-auto inline-flex justify-center items-center px-12 py-4 text-lg font-bold rounded-full text-white bg-brand-600 hover:bg-brand-500 shadow-xl shadow-brand-500/30 transition-all hover:-translate-y-1">
+                            無料で相談・診断を申し込む
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Email Address Fallback -->
+            <div class="mt-10 text-center text-slate-400">
+                <p class="text-sm mb-2">メールでの直接のご相談はこちら：</p>
                 <a href="mailto:mind.s.log.sw@gmail.com"
-                    class="inline-flex items-center gap-2 text-xl font-bold text-white hover:text-brand-300 transition-colors">
-                    <svg class="w-6 h-6 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    class="inline-flex items-center gap-2 text-lg font-bold text-white hover:text-brand-300 transition-colors">
+                    <svg class="w-5 h-5 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
                         </path>
@@ -755,7 +1038,9 @@
     <footer class="bg-black text-slate-500 py-12 border-t border-slate-800">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
             <div class="font-bold text-slate-300 text-xl mb-2 tracking-widest uppercase">mindsynclog</div>
-            <div class="text-xs mb-6 tracking-wide">AI Talent Agency & DX/AI Tool Development</div>
+            <div class="text-sm text-slate-400 mb-6 font-medium">歯科医院向け運用支援・Web改善<br>
+                <span class="text-xs text-slate-500 mt-1 inline-block">口コミ返信半自動化 / Web導線改善 / HP制作相談</span>
+            </div>
             <p class="text-xs">© 2026 MindSyncLog Inc. All rights reserved.</p>
         </div>
     </footer>
