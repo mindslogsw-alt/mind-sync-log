@@ -419,7 +419,7 @@
                                 <rect x="45" y="75" width="80" height="4" rx="2" fill="#e2e8f0" />
                                 <rect x="45" y="85" width="50" height="4" rx="2" fill="#e2e8f0" />
                                 <text x="90" y="130" class="text-[10px] font-bold fill-slate-500" text-anchor="middle">①
-                                    口コミ受信</text>
+                                    口コミ確認</text>
                             </g>
 
                             <g class="seq-line-1">
@@ -436,7 +436,7 @@
                                 <rect x="295" y="60" width="60" height="6" rx="3" fill="#bae6fd" />
                                 <rect x="295" y="75" width="40" height="6" rx="3" fill="#bae6fd" />
                                 <text x="310" y="130" class="text-[10px] font-bold fill-brand-600"
-                                    text-anchor="middle">② 返信案生成</text>
+                                    text-anchor="middle">② 返信案作成</text>
                             </g>
 
                             <g class="seq-line-2">
@@ -468,7 +468,7 @@
                                 <path d="M78 235l7 7 15-15" stroke="#10b981" stroke-width="3" stroke-linecap="round"
                                     fill="none" />
                                 <text x="90" y="280" class="text-[10px] font-bold fill-emerald-600"
-                                    text-anchor="middle">④ 投稿完了！</text>
+                                    text-anchor="middle">④ 返信反映</text>
 
                                 <!-- Result Badges -->
                                 <g transform="translate(40, 290)">
@@ -562,7 +562,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-slate-800 mb-4">返信案の半自動生成</h3>
                     <p class="text-slate-600 leading-relaxed text-sm">
-                        新着口コミを検知し、内容に沿った丁寧な返信案を自動で作成。スタッフは内容を「確認・承認」するだけで完了するため、文章を考える負担を軽くします。
+                        新着口コミを確認しやすくし、内容に沿った返信案を半自動で作成。スタッフは内容を「確認・承認」するだけで完了するため、文章を考える負担を軽くします。
                     </p>
                 </div>
                 <!-- Feature 2 -->
@@ -998,136 +998,165 @@
                 </div>
             </div>
         </div>
-    </section>
-    </div>
-    </div>
-    <!-- Operator Info -->
-    <div class="glass p-8 rounded-3xl border border-slate-100 bg-slate-50/30">
-        <h3 class="text-lg font-bold text-slate-900 mb-6">運営情報</h3>
-        <dl class="space-y-4">
-            <div class="grid grid-cols-3 gap-4 border-b border-slate-200 pb-3">
-                <dt class="text-xs font-bold text-slate-500 pt-1">運営元</dt>
-                <dd class="col-span-2 text-sm text-slate-800 font-medium">Mind Sync Log</dd>
-            </div>
-            <div class="grid grid-cols-3 gap-4 border-b border-slate-200 pb-3">
-                <dt class="text-xs font-bold text-slate-500 pt-1">代表</dt>
-                <dd class="col-span-2 text-sm text-slate-800 font-medium">和田 智志</dd>
-            </div>
-            <div class="grid grid-cols-3 gap-4 border-b border-slate-200 pb-3">
-                <dt class="text-xs font-bold text-slate-500 pt-1">所在地</dt>
-                <dd class="col-span-2 text-xs text-slate-700 leading-relaxed">〒500-0000 岐阜県岐阜市日野南8-9-1</dd>
-            </div>
-            <div class="grid grid-cols-3 gap-4 border-b border-slate-200 pb-3">
-                <dt class="text-xs font-bold text-slate-500 pt-1">連絡先</dt>
-                <dd class="col-span-2 text-xs text-slate-700">
-                    <a href="tel:0583370022" class="hover:text-brand-600 transition-colors">TEL:
-                        058-337-0022</a><br>
-                    <a href="mailto:mind.s.log.sw@gmail.com" class="hover:text-brand-600 transition-colors">Mail:
-                        mind.s.log.sw@gmail.com</a>
-                </dd>
-            </div>
-        </dl>
-        <div class="mt-8">
-            <a href="https://mindsynclog.jp/"
-                class="inline-flex items-center gap-2 text-brand-600 font-bold text-xs hover:gap-3 transition-all">
-                会社サイトを見る
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </a>
-        </div>
-    </div>
-    </div>
-    </div>
-    </section>
+        <!-- 8. 事業内容 (Business Content) -->
+        <section class="py-24 bg-white" id="services">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <div class="grid lg:grid-cols-2 gap-12 items-start">
+                    <div>
+                        <span class="text-brand-600 font-bold tracking-wider text-sm uppercase">Services</span>
+                        <h2 class="text-3xl font-bold text-slate-900 mt-3 mb-6">事業内容</h2>
+                        <p class="text-slate-600 mb-8 leading-relaxed">
+                            Mind Sync Logは、業務改善・Web導線設計・運用支援を行っています。<br>
+                            歯科医院様に特化したサポートだけでなく、クリエイティブとテクノロジーを掛け合わせた幅広い支援を展開しています。
+                        </p>
+                        <ul class="grid sm:grid-cols-2 gap-4 text-sm font-medium text-slate-700">
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 bg-brand-500 rounded-full"></span> Google口コミ返信の半自動化支援</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 bg-brand-500 rounded-full"></span> 口コミ運用フロー整備</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 bg-brand-500 rounded-full"></span> ホームページ制作 / 乗り換え</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 bg-brand-500 rounded-full"></span> LINE導線改善</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 bg-brand-500 rounded-full"></span> Web予約導線改善</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 bg-brand-500 rounded-full"></span> 業種別LP制作</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 bg-brand-500 rounded-full"></span> 運用支援（AI活用含む）</li>
+                        </ul>
+                    </div>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
-                <div class="font-bold text-slate-200 text-lg tracking-widest uppercase">mindsynclog</div>
-                <nav class="flex flex-wrap justify-center gap-6 text-[10px] font-bold tracking-widest uppercase">
-                    <a href="https://mindsynclog.jp/" class="hover:text-white transition-colors">Company Page</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                </nav>
+                    <!-- Operator Info -->
+                    <div class="glass p-8 rounded-3xl border border-slate-100 bg-slate-50/30" id="operator">
+                        <h3 class="text-lg font-bold text-slate-900 mb-6 font-bold">運営情報</h3>
+                        <dl class="space-y-4">
+                            <div class="grid grid-cols-3 gap-4 border-b border-slate-200 pb-3">
+                                <dt class="text-xs font-bold text-slate-500 pt-1">運営元</dt>
+                                <dd class="col-span-2 text-sm text-slate-800 font-medium tracking-tighter">Mind Sync Log
+                                </dd>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4 border-b border-slate-200 pb-3">
+                                <dt class="text-xs font-bold text-slate-500 pt-1">代表</dt>
+                                <dd class="col-span-2 text-sm text-slate-800 font-medium">和田 智志</dd>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4 border-b border-slate-200 pb-3">
+                                <dt class="text-xs font-bold text-slate-500 pt-1">所在地</dt>
+                                <dd class="col-span-2 text-xs text-slate-700 leading-relaxed">〒500-0000 岐阜県岐阜市日野南8-9-1
+                                </dd>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4 border-b border-slate-200 pb-3">
+                                <dt class="text-xs font-bold text-slate-500 pt-1">連絡先</dt>
+                                <dd class="col-span-2 text-xs text-slate-700">
+                                    <a href="tel:0583370022" class="hover:text-brand-600 transition-colors">TEL:
+                                        058-337-0022</a><br>
+                                    <a href="mailto:mind.s.log.sw@gmail.com"
+                                        class="hover:text-brand-600 transition-colors font-medium">Mail:
+                                        mind.s.log.sw@gmail.com</a>
+                                </dd>
+                            </div>
+                        </dl>
+                        <div class="mt-8">
+                            <a href="https://mindsynclog.jp/"
+                                class="inline-flex items-center gap-2 text-brand-600 font-bold text-xs hover:gap-3 transition-all">
+                                会社サイトを見る
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div
-                class="border-t border-white/5 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-[10px] tracking-wider uppercase">© 2026 Mind Sync Log Inc. All rights reserved.</p>
-                <p class="text-[9px] text-slate-600 uppercase">Designed for Dental Professional Excellence</p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
+                    <div class="font-bold text-slate-200 text-lg tracking-widest uppercase">mindsynclog</div>
+                    <nav class="flex flex-wrap justify-center gap-6 text-[10px] font-bold tracking-widest uppercase">
+                        <a href="https://mindsynclog.jp/" class="hover:text-white transition-colors">Company Page</a>
+                        <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    </nav>
+                </div>
+                <div
+                    class="border-t border-white/5 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-[10px] tracking-wider uppercase">© 2026 Mind Sync Log Inc. All rights reserved.</p>
+                    <p class="text-[9px] text-slate-600 uppercase">Designed for Dental Professional Excellence</p>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
 
-    <script>
-        /**
-         * Mobile Menu Toggle
-         */
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuIcon = document.getElementById('menuIcon');
-        const closeIcon = document.getElementById('closeIcon');
+        <script>
+            /**
+             * Mobile Menu Toggle
+             */
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+            const closeIcon = document.getElementById('closeIcon');
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            menuIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-        });
-
-        // Close menu when clicking links
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
             });
-        });
 
-        // Sticky Header effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 20) {
-                header.classList.add('glass-dark', 'text-white');
-                header.classList.remove('glass');
-                // Change nav text colors for dark mode if needed
-                document.querySelectorAll('nav a:not(.bg-brand-600)').forEach(a => a.classList.add('text-white/80'));
-            } else {
-                header.classList.remove('glass-dark', 'text-white');
-                header.classList.add('glass');
-                document.querySelectorAll('nav a:not(.bg-brand-600)').forEach(a => a.classList.remove('text-white/80'));
-            }
-        });
+            // Close menu when clicking links
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                });
+            });
 
-        /**
-         * フォーム送信ハンドラー (405エラー回避)
-         * mailto: を使用してメールソフトを立ち上げる
-         */
-        function handleFormSubmit(event) {
-            event.preventDefault();
+            // Sticky Header effect
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 20) {
+                    header.classList.add('glass-dark', 'text-white');
+                    header.classList.remove('glass');
+                    // Change nav text colors for dark mode if needed
+                    document.querySelectorAll('nav a:not(.bg-brand-600)').forEach(a => a.classList.add('text-white/80'));
+                } else {
+                    header.classList.remove('glass-dark', 'text-white');
+                    header.classList.add('glass');
+                    document.querySelectorAll('nav a:not(.bg-brand-600)').forEach(a => a.classList.remove('text-white/80'));
+                }
+            });
 
-            const clinic = document.getElementById('clinic').value;
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+            /**
+             * フォーム送信ハンドラー (405エラー回避)
+             * mailto: を使用してメールソフトを立ち上げる
+             */
+            function handleFormSubmit(event) {
+                event.preventDefault();
 
-            // チェックボックス (気になること)
-            const concerns = [];
-            const concernCheckboxes = document.querySelectorAll('input[name="concerns"]:checked');
-            concernCheckboxes.forEach(cb => concerns.push(cb.value));
+                const clinic = document.getElementById('clinic').value;
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
 
-            // ラジオボタン (温度感)
-            const interestRadio = document.querySelector('input[name="interest"]:checked');
-            const interest = interestRadio ? interestRadio.value : "未選択";
+                // チェックボックス (気になること)
+                const concerns = [];
+                const concernCheckboxes = document.querySelectorAll('input[name="concerns"]:checked');
+                concernCheckboxes.forEach(cb => concerns.push(cb.value));
 
-            // ラジオボタン (口コミ状況)
-            const statusRadio = document.querySelector('input[name="status"]:checked');
-            const status = statusRadio ? statusRadio.value : "未選択";
+                // ラジオボタン (温度感)
+                const interestRadio = document.querySelector('input[name="interest"]:checked');
+                const interest = interestRadio ? interestRadio.value : "未選択";
 
-            // メール本文の整形
-            const subject = encodeURIComponent(`【歯科LP】無料診断・相談申し込み (${clinic}様)`);
-            const bodyContent = `
+                // ラジオボタン (口コミ状況)
+                const statusRadio = document.querySelector('input[name="status"]:checked');
+                const status = statusRadio ? statusRadio.value : "未選択";
+
+                // メール本文の整形
+                const subject = encodeURIComponent(`【歯科LP】無料診断・相談申し込み (${clinic}様)`);
+                const bodyContent = `
 【医院名】: ${clinic}
 【お名前】: ${name}
 【メール】: ${email}
@@ -1144,15 +1173,15 @@ ${message}
 ※このメールはLPのフォームより生成されました。
             `.trim();
 
-            const body = encodeURIComponent(bodyContent);
-            const mailtoUrl = `mailto:mind.s.log.sw@gmail.com?subject=${subject}&body=${body}`;
+                const body = encodeURIComponent(bodyContent);
+                const mailtoUrl = `mailto:mind.s.log.sw@gmail.com?subject=${subject}&body=${body}`;
 
-            // メールクライアントを起動
-            window.location.href = mailtoUrl;
+                // メールクライアントを起動
+                window.location.href = mailtoUrl;
 
-            alert("メールソフトが起動します。そのまま送信ボタンを押してください。");
-        }
-    </script>
+                alert("メールソフトが起動します。そのまま送信ボタンを押してください。");
+            }
+        </script>
 </body>
 
 </html>
