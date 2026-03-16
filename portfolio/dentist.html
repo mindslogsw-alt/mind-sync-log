@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>あおぞらファミリー歯科 | 痛みに配慮した・家族で通える歯医者</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Noto Sans JP', 'sans-serif'],
+                        rounded: ['M PLUS Rounded 1c', 'sans-serif'],
+                    },
+                    colors: {
+                        medical: {
+                            blue: '#0ea5e9',      // 清潔感のあるスカイブルー
+                            dark: '#0f172a',      // 引き締めるネイビー
+                            light: '#f0f9ff',     // 背景用の極薄い青
+                            accent: '#f97316',    // 予約ボタン用の目立つオレンジ
+                            accentHover: '#ea580c'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #ffffff; color: #334155; scroll-behavior: smooth; }
+        /* 医療系らしい清潔感のあるシャドウ */
+        .medical-shadow { box-shadow: 0 4px 20px rgba(14, 165, 233, 0.08); }
+        /* アコーディオンのアイコン用 */
+        .faq-icon { transition: transform 0.3s ease; }
+        .faq-open .faq-icon { transform: rotate(45deg); }
+    </style>
+</head>
+<body class="antialiased font-sans pt-20 md:pt-24 pb-20 md:pb-0">
+
+    <header class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 md:h-24">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center gap-2">
+                        <svg class="w-8 h-8 text-medical-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <div class="flex flex-col">
+                            <span class="font-rounded font-bold text-xl md:text-2xl text-medical-dark leading-none tracking-wide">あおぞらファミリー歯科</span>
+                            <span class="text-[10px] md:text-xs text-gray-500 mt-1">〇〇市〇〇町の歯医者・小児歯科</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <nav class="flex space-x-6 text-sm font-medium text-gray-700">
+                        <a href="#features" class="hover:text-medical-blue transition">特徴</a>
+                        <a href="#services" class="hover:text-medical-blue transition">診療案内</a>
+                        <a href="#doctor" class="hover:text-medical-blue transition">院長紹介</a>
+                        <a href="#access" class="hover:text-medical-blue transition">アクセス・診療時間</a>
+                    </nav>
+                    <div class="flex items-center gap-4 border-l pl-8 border-gray-200">
+                        <div class="text-right">
+                            <p class="text-xs text-gray-500 mb-0.5">お気軽にご相談ください</p>
+                            <p class="font-bold text-medical-dark text-xl font-rounded tracking-wider">000-000-0000</p>
+                        </div>
+                        <a href="#reserve" class="bg-medical-accent text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-medical-accentHover transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            24時間WEB予約
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:hidden flex items-center">
+                    <button class="text-gray-600 hover:text-medical-blue focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative bg-medical-light overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32 flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-1/2 z-10 gs-reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-medical-blue/30 text-medical-blue text-sm font-bold mb-6">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    土曜も17時まで診療 / 駐車場完備
+                </div>
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-rounded font-bold text-medical-dark leading-snug mb-6">
+                    家族みんなが、<br>
+                    <span class="text-medical-blue">笑顔で通える</span>歯医者さん。
+                </h1>
+                <p class="text-gray-600 md:text-lg mb-8 leading-relaxed">
+                    「痛い」「怖い」という歯医者のイメージを変えるため、<br class="hidden md:block">
+                    丁寧な説明と、痛みに最大限配慮した治療を行います。<br class="hidden md:block">
+                    小さなお子様からご年配の方まで、お気軽にご相談ください。
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#reserve" class="text-center bg-medical-accent text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-medical-accentHover transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        まずは初診・無料相談を予約
+                    </a>
+                    <a href="../dental/index.html" class="text-center bg-white border border-medical-blue text-medical-blue px-8 py-4 rounded-full font-bold text-lg shadow-md hover:bg-medical-light transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                        キャンペーン詳細へ戻る
+                    </a>
+                </div>
+                <p class="text-xs text-gray-500 mt-4 text-center sm:text-left">※初診の方も24時間WEBからご予約可能です。</p>
+            </div>
+            
+            <div class="w-full md:w-1/2 relative gs-reveal">
+                <div class="absolute inset-0 bg-blue-200 rounded-full blur-3xl opacity-30 transform translate-x-10 translate-y-10"></div>
+                <div class="relative rounded-2xl md:rounded-tl-[100px] md:rounded-br-[100px] overflow-hidden shadow-2xl aspect-[4/3] bg-gray-200 flex items-center justify-center border-4 border-white">
+                    <img src="./images/dentist_fv_main.png" alt="あおぞらファミリー歯科 メイン" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
+                    <div class="w-12 h-12 bg-medical-light rounded-full flex items-center justify-center text-medical-blue">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 font-bold">徹底した</p>
+                        <p class="text-sm font-bold text-medical-dark">院内感染対策</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gray-50 rounded-3xl p-8 md:p-12 border border-gray-100 relative gs-reveal mt-[-80px] z-20 shadow-xl">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 font-rounded">歯のことで、<br class="md:hidden">こんなお悩み・不安はありませんか？</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex items-start p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
+                        <svg class="w-6 h-6 text-medical-blue flex-shrink-0 mt-0.5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <p class="text-gray-700 font-medium">歯が痛い・しみるが、<span class="text-medical-blue font-bold">治療の痛みが怖い</span></p>
+                    </div>
+                    <div class="flex items-start p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
+                        <svg class="w-6 h-6 text-medical-blue flex-shrink-0 mt-0.5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <p class="text-gray-700 font-medium">過去に説明不足のまま<span class="text-medical-blue font-bold">勝手に歯を削られた</span></p>
+                    </div>
+                    <div class="flex items-start p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
+                        <svg class="w-6 h-6 text-medical-blue flex-shrink-0 mt-0.5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <p class="text-gray-700 font-medium">子どもの<span class="text-medical-blue font-bold">虫歯予防や歯並び</span>が気になっている</p>
+                    </div>
+                    <div class="flex items-start p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
+                        <svg class="w-6 h-6 text-medical-blue flex-shrink-0 mt-0.5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <p class="text-gray-700 font-medium">ずっと定期検診に行っていないので<span class="text-medical-blue font-bold">診てほしい</span></p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <p class="text-lg font-bold text-medical-dark">そのお悩み、<span class="text-medical-blue">あおぞらファミリー歯科</span>にお任せください！</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-20 bg-medical-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 gs-reveal">
+                <span class="text-medical-blue font-bold tracking-wider text-sm">FEATURES</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 font-rounded">当院が選ばれる4つの理由</h2>
+                <div class="w-16 h-1 bg-medical-blue mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-2xl medical-shadow gs-reveal hover:-translate-y-2 transition duration-300">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-medical-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-rounded">痛みに最大限配慮した治療</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">表面麻酔の使用や、極細の注射針、麻酔液を温めるなど、治療時の「チクッ」とした痛みを最小限に抑える工夫を徹底しています。</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl medical-shadow gs-reveal hover:-translate-y-2 transition duration-300" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-medical-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-rounded">勝手に削らない、丁寧な説明</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">口腔内カメラやモニターを使用し、「今どんな状態で」「なぜ削る必要があるのか」をご納得いただけるまで分かりやすく説明します。</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl medical-shadow gs-reveal hover:-translate-y-2 transition duration-300" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-medical-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-rounded">キッズスペース完備</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">小さなお子様連れでも安心して通えるよう、院内にキッズスペースをご用意。ベビーカーのまま診療室にお入りいただけます。</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl medical-shadow gs-reveal hover:-translate-y-2 transition duration-300" style="transition-delay: 300ms;">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-medical-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-rounded">徹底した衛生管理</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">使用する器具は患者様ごとに世界最高基準の滅菌器で処理。コップやエプロンは使い捨てを採用し、院内感染を徹底予防します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 gs-reveal">
+                <span class="text-medical-blue font-bold tracking-wider text-sm">SERVICES</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 font-rounded">診療案内</h2>
+                <div class="w-16 h-1 bg-medical-blue mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg transition gs-reveal">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden flex items-center justify-center">
+                        <img src="./images/dentist_treatment.png" alt="虫歯・歯周病治療" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-medical-dark group-hover:text-medical-blue transition">虫歯・歯周病治療<br><span class="text-xs font-normal text-gray-500">（一般歯科）</span></h3>
+                        <p class="text-sm text-gray-600">なるべく「削らない・抜かない」治療を心がけ、ご自身の歯を長く残すための治療を行います。</p>
+                    </div>
+                </div>
+                <div class="group border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg transition gs-reveal" style="transition-delay: 100ms;">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden flex items-center justify-center">
+                        <img src="./images/dentist_preventive.png" alt="定期検診・クリーニング" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-medical-dark group-hover:text-medical-blue transition">定期検診・クリーニング<br><span class="text-xs font-normal text-gray-500">（予防歯科）</span></h3>
+                        <p class="text-sm text-gray-600">痛くなってから行くのではなく、痛くならないために。プロによる徹底的なクリーニングを提供します。</p>
+                    </div>
+                </div>
+                <div class="group border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg transition gs-reveal" style="transition-delay: 200ms;">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden flex items-center justify-center">
+                        <img src="./images/dentist_pediatric.png" alt="子どもの歯の治療" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-medical-dark group-hover:text-medical-blue transition">子どもの歯の治療<br><span class="text-xs font-normal text-gray-500">（小児歯科）</span></h3>
+                        <p class="text-sm text-gray-600">歯医者嫌いにならないよう、まずは器具に慣れるところから。フッ素塗布やシーラントで虫歯を防ぎます。</p>
+                    </div>
+                </div>
+                <div class="group border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg transition gs-reveal" style="transition-delay: 300ms;">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden flex items-center justify-center">
+                        <img src="./images/dentist_whitening.png" alt="ホワイトニング" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-medical-dark group-hover:text-medical-blue transition">ホワイトニング<br><span class="text-xs font-normal text-gray-500">（審美歯科）</span></h3>
+                        <p class="text-sm text-gray-600">削ることなく、薬剤の力で歯を本来の白さへ。オフィス、ホームの両方に対応しています。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="doctor" class="py-20 bg-medical-light overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12 bg-white rounded-3xl p-8 md:p-12 medical-shadow gs-reveal">
+                <div class="md:w-2/5 flex justify-center">
+                    <div class="w-64 h-64 md:w-80 md:h-80 bg-gray-200 rounded-full border-8 border-medical-light flex items-center justify-center shadow-inner overflow-hidden relative">
+                        <img src="./images/dentist_doctor.png" alt="院長" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="md:w-3/5 text-center md:text-left">
+                    <h3 class="text-xl font-bold text-medical-blue mb-2">院長からのメッセージ</h3>
+                    <h4 class="text-2xl md:text-3xl font-bold mb-6 font-rounded">「また来たい」と思える、<br>温かい歯科医院を目指して。</h4>
+                    <p class="text-gray-600 leading-relaxed mb-6 text-sm md:text-base">
+                        はじめまして、あおぞらファミリー歯科・院長の〇〇です。<br><br>
+                        「歯医者は痛くて怖い場所」というイメージをお持ちの方は少なくありません。当院では、その不安を取り除くことを第一に考えています。<br>
+                        治療前のカウンセリングに十分な時間をかけ、患者様お一人おひとりのご希望や不安な点をお伺いした上で、最適な治療プランをご提案いたします。<br><br>
+                        ご家族皆様で安心して通い、一生涯ご自身の歯で美味しい食事を楽しんでいただけるよう、全力でサポートさせていただきます。少しでも気になることがあれば、どうぞお気軽にご相談ください。
+                    </p>
+                    <div>
+                        <p class="font-bold text-medical-dark text-lg">院長　〇〇 〇〇</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 gs-reveal">
+                <span class="text-medical-blue font-bold tracking-wider text-sm">FLOW</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 font-rounded">初診の流れ</h2>
+                <p class="text-gray-600">初めてご来院いただく際のスムーズな流れをご案内します。</p>
+            </div>
+
+            <div class="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-medical-blue/30 before:to-transparent">
+                
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active gs-reveal">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-medical-blue text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">1</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white border border-gray-100 p-6 rounded-2xl shadow-sm group-hover:shadow-md transition">
+                        <h4 class="font-bold text-lg mb-2 text-medical-dark">ご予約・ご来院</h4>
+                        <p class="text-sm text-gray-600">WEB、またはお電話にてご予約ください。当日は保険証（またはマイナ保険証）とお薬手帳をお持ちください。</p>
+                    </div>
+                </div>
+                
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group gs-reveal">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-medical-blue text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">2</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white border border-gray-100 p-6 rounded-2xl shadow-sm group-hover:shadow-md transition">
+                        <h4 class="font-bold text-lg mb-2 text-medical-dark">問診・カウンセリング</h4>
+                        <p class="text-sm text-gray-600">痛みがある場所、治療に対する不安、ご希望の治療期間などを専用のコーディネーターが丁寧にお伺いします。</p>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group gs-reveal">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-medical-blue text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">3</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white border border-gray-100 p-6 rounded-2xl shadow-sm group-hover:shadow-md transition">
+                        <h4 class="font-bold text-lg mb-2 text-medical-dark">精密検査</h4>
+                        <p class="text-sm text-gray-600">必要に応じてデジタルレントゲン撮影や口腔内写真撮影を行い、目視では見えない部分の状態を正確に把握します。</p>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group gs-reveal">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-medical-blue text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">4</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white border border-gray-100 p-6 rounded-2xl shadow-sm group-hover:shadow-md transition">
+                        <h4 class="font-bold text-lg mb-2 text-medical-dark">治療計画の説明・治療開始</h4>
+                        <p class="text-sm text-gray-600">検査結果をもとに、モニターを見ながら分かりやすく説明します。同意をいただいてから、痛みに配慮した治療を開始します。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-medical-light">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 gs-reveal">
+                <span class="text-medical-blue font-bold tracking-wider text-sm">FAQ</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 font-rounded">よくあるご質問</h2>
+            </div>
+            
+            <div class="space-y-4 gs-reveal">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden faq-item">
+                    <button class="w-full text-left px-6 py-5 font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="flex items-center gap-3"><span class="text-medical-blue font-bold text-xl">Q.</span> 初診時に必要なものは何ですか？</span>
+                        <svg class="w-5 h-5 text-gray-400 faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    </button>
+                    <div class="px-6 pb-5 hidden text-gray-600 text-sm leading-relaxed border-t border-gray-50 pt-4">
+                        <span class="text-medical-accent font-bold text-lg mr-2">A.</span>
+                        健康保険証（またはマイナ保険証）を必ずお持ちください。また、現在服用中のお薬がある方は「お薬手帳」、医療証等をお持ちの方はそちらもご持参ください。
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden faq-item">
+                    <button class="w-full text-left px-6 py-5 font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="flex items-center gap-3"><span class="text-medical-blue font-bold text-xl">Q.</span> 痛いのが本当に苦手なのですが…</span>
+                        <svg class="w-5 h-5 text-gray-400 faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    </button>
+                    <div class="px-6 pb-5 hidden text-gray-600 text-sm leading-relaxed border-t border-gray-50 pt-4">
+                        <span class="text-medical-accent font-bold text-lg mr-2">A.</span>
+                        ご安心ください。当院では麻酔の注射をする前に「表面麻酔」を塗り、針が刺さる痛みを軽減します。また、極細の針を使用するなど、可能な限り痛みを抑える工夫を行っております。問診時にも遠慮なくお伝えください。
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden faq-item">
+                    <button class="w-full text-left px-6 py-5 font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="flex items-center gap-3"><span class="text-medical-blue font-bold text-xl">Q.</span> 小さな子どもを連れて行っても大丈夫ですか？</span>
+                        <svg class="w-5 h-5 text-gray-400 faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    </button>
+                    <div class="px-6 pb-5 hidden text-gray-600 text-sm leading-relaxed border-t border-gray-50 pt-4">
+                        <span class="text-medical-accent font-bold text-lg mr-2">A.</span>
+                        大歓迎です。院内にはキッズスペースを完備しており、ベビーカーのまま診療室にお入りいただくことも可能です。スタッフがお子様を見守ることもできますので、ご予約時にお知らせください。
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden faq-item">
+                    <button class="w-full text-left px-6 py-5 font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="flex items-center gap-3"><span class="text-medical-blue font-bold text-xl">Q.</span> 各種クレジットカードは使えますか？</span>
+                        <svg class="w-5 h-5 text-gray-400 faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    </button>
+                    <div class="px-6 pb-5 hidden text-gray-600 text-sm leading-relaxed border-t border-gray-50 pt-4">
+                        <span class="text-medical-accent font-bold text-lg mr-2">A.</span>
+                        自費診療（ホワイトニングや被せ物など）の場合は、各種クレジットカードをご利用いただけます。保険診療につきましては、原則現金でのお支払いをお願いしております。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="access" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-12 gs-reveal">
+                <div class="lg:w-1/3">
+                    <h2 class="text-2xl font-bold mb-6 border-l-4 border-medical-blue pl-3 font-rounded">診療時間・アクセス</h2>
+                    <p class="text-medical-dark font-bold text-xl mb-2">あおぞらファミリー歯科</p>
+                    <p class="text-gray-600 text-sm mb-6">
+                        〒000-0000<br>
+                        〇〇県〇〇市〇〇町1-2-3 メディカルビル1F<br>
+                        （〇〇駅より徒歩3分 / 専用駐車場5台完備）
+                    </p>
+                    
+                    <div class="overflow-x-auto mb-6">
+                        <table class="w-full text-center border-collapse border border-gray-200 text-sm">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="border border-gray-200 py-2 w-1/4">診療時間</th>
+                                    <th class="border border-gray-200 py-2 w-[10%] text-gray-600">月</th>
+                                    <th class="border border-gray-200 py-2 w-[10%] text-gray-600">火</th>
+                                    <th class="border border-gray-200 py-2 w-[10%] text-gray-600">水</th>
+                                    <th class="border border-gray-200 py-2 w-[10%] text-gray-600">木</th>
+                                    <th class="border border-gray-200 py-2 w-[10%] text-gray-600">金</th>
+                                    <th class="border border-gray-200 py-2 w-[10%] text-blue-500">土</th>
+                                    <th class="border border-gray-200 py-2 w-[10%] text-red-500">日</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-200 py-2 bg-gray-50 text-xs">9:30 - 13:00</td>
+                                    <td class="border border-gray-200 py-2 text-medical-blue font-bold">●</td>
+                                    <td class="border border-gray-200 py-2 text-medical-blue font-bold">●</td>
+                                    <td class="border border-gray-200 py-2 text-medical-blue font-bold">●</td>
+                                    <td class="border border-gray-200 py-2 text-gray-300">休</td>
+                                    <td class="border border-gray-200 py-2 text-medical-blue font-bold">●</td>
+                                    <td class="border border-gray-200 py-2 text-medical-blue font-bold">●</td>
+                                    <td class="border border-gray-200 py-2 text-gray-300">休</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 py-2 bg-gray-50 text-xs">14:30 - 19:00</td>
+                                    <td class="border border-gray-200 py-2 text-medical-blue font-bold">●</td>
+                                    <td class="border border-gray-200 py-2 text-medical-blue font-bold">●</td>
+                                    <td class="border border-gray-200 py-2 text-medical-blue font-bold">●</td>
+                                    <td class="border border-gray-200 py-2 text-gray-300">休</td>
+                                    <td class="border border-gray-200 py-2 text-medical-blue font-bold">●</td>
+                                    <td class="border border-gray-200 py-2 text-medical-blue font-bold">▲</td>
+                                    <td class="border border-gray-200 py-2 text-gray-300">休</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="text-xs text-gray-500 mt-2">※休診日：木曜・日曜・祝日<br>※▲土曜午後は14:30〜17:00まで</p>
+                    </div>
+                </div>
+                
+                <div class="lg:w-2/3 h-64 lg:h-auto bg-gray-200 rounded-2xl flex items-center justify-center border border-gray-300">
+                    <div class="text-center text-gray-500">
+                        <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <span class="font-bold">【Google Map 埋め込みエリア】</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reserve" class="py-20 bg-medical-blue relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center gs-reveal">
+            <h2 class="text-2xl md:text-4xl font-bold text-white mb-6 font-rounded">
+                ご予約・お問い合わせ
+            </h2>
+            <p class="text-white/90 mb-10 leading-relaxed text-sm md:text-base">
+                当院は患者様の待ち時間を減らすため、原則予約制となっております。<br>
+                急な痛みがある場合も、まずはお電話にてご連絡ください。
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                <a href="#" class="w-full md:w-auto px-8 py-5 bg-medical-accent text-white text-lg font-bold rounded-full hover:bg-medical-accentHover transition shadow-xl flex items-center justify-center transform hover:-translate-y-1">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    24時間WEB予約はこちら
+                </a>
+                
+                <a href="tel:0000000000" class="w-full md:w-auto px-8 py-5 bg-white text-medical-dark text-lg font-bold rounded-full hover:bg-gray-50 transition shadow-xl flex items-center justify-center transform hover:-translate-y-1">
+                    <svg class="w-6 h-6 mr-2 text-medical-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    000-000-0000
+                </a>
+            </div>
+            
+            <div class="mt-8">
+                <a href="#" class="inline-flex items-center text-white hover:text-white/80 transition underline underline-offset-4">
+                    <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.122.302.079.769.038 1.083-.004.032-.189 1.139-.232 1.36-.073.364-.344 1.685 1.479.917 1.821-.767 9.837-5.8 9.837-11.196l-.215-2.364z"/></svg>
+                    LINEでのご質問・ご相談はこちら
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-medical-dark text-gray-300 py-10 pb-24 md:pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <span class="font-bold text-xl tracking-wide text-white font-rounded">あおぞらファミリー歯科</span>
+                <p class="text-xs mt-2 text-gray-400">〇〇県〇〇市〇〇町1-2-3</p>
+            </div>
+            <div class="text-xs text-gray-500">
+                &copy; 2026 Aozora Family Dental Clinic. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <div class="md:hidden fixed bottom-0 w-full bg-white/95 backdrop-blur-md border-t border-gray-200 p-2 z-50 flex gap-2 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+        <a href="tel:0000000000" class="flex-1 bg-white border border-medical-blue text-medical-blue py-3 rounded-lg font-bold text-center flex items-center justify-center text-sm shadow-sm active:bg-blue-50">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話
+        </a>
+        <a href="#reserve" class="flex-[2] bg-medical-accent text-white py-3 rounded-lg font-bold text-center flex items-center justify-center text-sm shadow-sm active:bg-medical-accentHover">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            WEB予約
+        </a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        // FAQアコーディオンの開閉処理
+        function toggleFaq(button) {
+            const item = button.parentElement;
+            const content = button.nextElementSibling;
+            
+            item.classList.toggle('faq-open');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+            } else {
+                content.classList.add('hidden');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // スクロール時のフェードインアニメーション
+            // ※医療系なので、あまり派手な動きにせず上品に表示させる
+            const revealElements = document.querySelectorAll('.gs-reveal');
+            revealElements.forEach((el) => {
+                gsap.fromTo(el, 
+                    { opacity: 0, y: 20 },
+                    { 
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse"
+                        },
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 0.8, 
+                        ease: "power2.out" 
+                    }
+                );
+            });
+
+            // スムーススクロール設定
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

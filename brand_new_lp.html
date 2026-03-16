@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Sync Log | AI Agent & Vibe Coding Studio</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&family=Outfit:wght@500;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --base-black: #000000;
+            --deep-gray: #0a0a0a;
+            --accent-white: #ffffff;
+            --accent-glow: rgba(255, 255, 255, 0.8);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --card-hover: rgba(255, 255, 255, 0.07);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--base-black);
+            color: var(--accent-white);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.9) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 900px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, #fff 0%, #666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            color: #aaa;
+            margin-bottom: 50px;
+            letter-spacing: 0.1em;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards;
+        }
+
+        /* --- Cyber Button --- */
+        .btn-cyber {
+            display: inline-block;
+            padding: 20px 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--base-black);
+            background: var(--accent-white);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            letter-spacing: 0.2em;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s forwards;
+        }
+
+        .btn-cyber:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.25em;
+        }
+
+        /* --- About Section --- */
+        .about {
+            padding: 120px 20px;
+            background: var(--base-black);
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- Glassmorphism Card --- */
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 50px 40px;
+            border-radius: 2px;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+        }
+
+        .card:hover {
+            background: var(--card-hover);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-10px);
+        }
+
+        .card-icon {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 30px;
+            display: block;
+            letter-spacing: 0.3em;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-white);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #888;
+            line-height: 1.8;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--base-black);
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: #444;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3.2rem;
+            }
+
+            .about {
+                padding: 80px 20px;
+            }
+
+            .card {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay loop muted playsinline class="video-background">
+            <source src="assets/background.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+
+        <div class="hero-content">
+            <h1 class="hero-title">Mind Sync Log</h1>
+            <p class="hero-sub">AIエージェントとVibe Codingが、<br>ビジネスの常識を書き換える。</p>
+            <a href="mailto:mind.s.log.sw@gmail.com" class="btn-cyber">CONTACT STUDIO</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Expertise</h2>
+            </div>
+
+            <div class="card-grid">
+                <!-- Card 1 -->
+                <div class="card">
+                    <span class="card-icon">CORE TECHNOLOGY</span>
+                    <h3>AIエージェント構築<br>(Antigravity)</h3>
+                    <p>
+                        単なる対話型AIを超え、タスクを自律的に遂行するエージェントシステム。あなたのデジタル・クローンが、24時間、高度な意思決定と実行を代行します。
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card">
+                    <span class="card-icon">VISUAL ASSETS</span>
+                    <h3>AIタレント<br>制作・運用</h3>
+                    <p>
+                        炎上リスクゼロ、スキャンダルゼロ。ブランドイメージに最適化されたAIモデルを生成し、SNSや広告メディアで圧倒的な影響力を発揮させます。
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card">
+                    <span class="card-icon">SPEED INNOVATION</span>
+                    <h3>Vibe Coding による<br>爆速システム開発</h3>
+                    <p>
+                        自然言語による指示から、即座に動くプロトタイプと高性能なツールを創出。従来の常識を覆すスピードで、ビジネスに必要なデジタル基盤を構築します。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Mind Sync Log. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

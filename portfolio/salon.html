@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière (ルミエール) | 大人の女性のための完全個室エステサロン</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Noto Sans JP', 'sans-serif'],
+                        serif: ['Noto Serif JP', 'serif'],
+                    },
+                    colors: {
+                        salon: {
+                            bg: '#FCFBF9',       // 優しいベースカラー（オフホワイト/アイボリー）
+                            text: '#4A403A',     // 柔らかく上品なブラウン・グレー系の文字色
+                            gold: '#C5A66B',     // アクセントのくすみゴールド
+                            goldLight: '#E8DFCC',// 薄いゴールド
+                            pink: '#F4ECEB',     // ほんのりベビーピンク（背景アクセント）
+                            line: '#06C755',     // LINEのブランドカラー
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FCFBF9; color: #4A403A; scroll-behavior: smooth; }
+        .text-vertical { writing-mode: vertical-rl; text-orientation: mixed; }
+        .letter-spacing-wide { letter-spacing: 0.1em; }
+        .letter-spacing-widest { letter-spacing: 0.15em; }
+        
+        /* ゆっくりふわっとフェードインするアニメーション用 */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* アコーディオン開閉 */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease;
+        }
+        .faq-open .faq-answer {
+            max-height: 500px;
+            padding-bottom: 1.5rem;
+        }
+        .faq-icon i { transition: transform 0.3s ease; }
+        .faq-open .faq-icon i { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="antialiased selection:bg-salon-gold selection:text-white pb-20 md:pb-0">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-salon-goldLight transition-all duration-300" id="header">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-serif text-2xl tracking-widest text-salon-gold">Lumière</a>
+                </div>
+                <!-- PC Nav -->
+                <nav class="hidden md:flex space-x-8 text-sm tracking-widest text-salon-text">
+                    <a href="#about" class="hover:text-salon-gold transition">ABOUT</a>
+                    <a href="#menu" class="hover:text-salon-gold transition">MENU</a>
+                    <a href="#flow" class="hover:text-salon-gold transition">FLOW</a>
+                    <a href="#faq" class="hover:text-salon-gold transition">FAQ</a>
+                </nav>
+                <div class="hidden md:block">
+                    <a href="#reserve" class="bg-salon-line text-white px-6 py-2.5 rounded-full text-sm font-bold tracking-wider hover:bg-green-600 transition shadow-sm flex items-center gap-2">
+                        <i class="fab fa-line text-lg"></i> LINEで予約・相談
+                    </a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-salon-text p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- First View -->
+    <section class="relative pt-20 pb-16 md:pt-32 md:pb-24 overflow-hidden min-h-[90vh] flex items-center">
+        <!-- 背景の装飾 -->
+        <div class="absolute top-0 right-0 w-2/3 h-full bg-salon-pink opacity-50 rounded-bl-[100px] -z-10"></div>
+        <div class="absolute top-20 left-10 w-64 h-64 bg-salon-goldLight rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse -z-10"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                <!-- Text Area -->
+                <div class="w-full md:w-1/2 z-10 fade-in-up mt-8 md:mt-0 order-2 md:order-1">
+                    <p class="text-salon-gold font-serif text-sm tracking-widest mb-4">完全個室・女性専用エステサロン</p>
+                    <h1 class="text-3xl md:text-5xl lg:text-5xl font-serif leading-relaxed mb-6 letter-spacing-wide text-salon-text">
+                        本来の美しさを、<br>
+                        静かな空間で<br class="hidden md:block">
+                        呼び覚ます。
+                    </h1>
+                    <p class="text-sm md:text-base leading-loose text-gray-600 mb-10 font-sans font-light">
+                        年齢と共に変化するお肌や身体のサイン。<br>
+                        Lumière（ルミエール）は、毎日を頑張る大人の女性へ<br>
+                        「結果」と「深い癒し」をお約束するプライベートサロンです。
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#reserve" class="bg-salon-line text-white text-center px-8 py-4 rounded-full font-bold shadow-lg hover:bg-green-600 transition duration-300 flex items-center justify-center gap-2 tracking-widest">
+                            <i class="fab fa-line text-xl"></i> 初回体験をLINEで予約
+                        </a>
+                    </div>
+                </div>
+                <!-- Image Area -->
+                <div class="w-full md:w-1/2 relative order-1 md:order-2 fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="aspect-[3/4] md:aspect-[4/5] rounded-[40px] md:rounded-[80px] rounded-tr-none overflow-hidden shadow-2xl relative border-8 border-white">
+                        <!-- Portolio generated image -->
+                        <img src="./images/salon_fv.png" alt="上質なエステサロンのリラックスした女性" class="w-full h-full object-cover">
+                    </div>
+                    <!-- 浮遊するバッジ -->
+                    <div class="absolute -bottom-6 -left-6 md:-left-10 bg-white p-5 rounded-full shadow-xl border border-salon-goldLight flex flex-col items-center justify-center w-32 h-32 md:w-40 md:h-40">
+                        <span class="text-salon-gold text-xs font-bold mb-1 tracking-widest">TRIAL</span>
+                        <span class="font-serif text-lg md:text-xl text-salon-text leading-tight text-center">初回体験<br><span class="text-2xl font-bold">¥5,500</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems / Empathy Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="font-serif text-2xl md:text-3xl tracking-widest mb-4">こんなお悩み、抱えていませんか？</h2>
+                <div class="w-12 h-px bg-salon-gold mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 fade-in-up" style="transition-delay: 0.2s;">
+                <div class="bg-salon-bg p-6 rounded-2xl border border-salon-goldLight/50 text-center hover:shadow-md transition">
+                    <span class="block text-salon-gold text-2xl mb-3"><i class="fa-solid fa-droplet"></i></span>
+                    <h3 class="font-bold mb-2">夕方のむくみ</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">靴がキツくなる、足が重くてダルい</p>
+                </div>
+                <div class="bg-salon-bg p-6 rounded-2xl border border-salon-goldLight/50 text-center hover:shadow-md transition">
+                    <span class="block text-salon-gold text-2xl mb-3"><i class="fa-solid fa-face-smile-relaxed"></i></span>
+                    <h3 class="font-bold mb-2">お顔のたるみ</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">鏡を見るたび、フェイスラインが気になる</p>
+                </div>
+                <div class="bg-salon-bg p-6 rounded-2xl border border-salon-goldLight/50 text-center hover:shadow-md transition">
+                    <span class="block text-salon-gold text-2xl mb-3"><i class="fa-solid fa-spa"></i></span>
+                    <h3 class="font-bold mb-2">肌荒れ・くすみ</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">化粧ノリが悪く、肌が疲れて見える</p>
+                </div>
+                <div class="bg-salon-bg p-6 rounded-2xl border border-salon-goldLight/50 text-center hover:shadow-md transition">
+                    <span class="block text-salon-gold text-2xl mb-3"><i class="fa-solid fa-bed"></i></span>
+                    <h3 class="font-bold mb-2">慢性的な疲れ</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">寝ても疲れが取れない、リフレッシュしたい</p>
+                </div>
+                <div class="bg-salon-bg p-6 rounded-2xl border border-salon-goldLight/50 text-center hover:shadow-md transition">
+                    <span class="block text-salon-gold text-2xl mb-3"><i class="fa-solid fa-weight-scale"></i></span>
+                    <h3 class="font-bold mb-2">痩せにくさ</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">年齢とともに体重が落ちづらくなった</p>
+                </div>
+                <div class="bg-salon-pink p-6 rounded-2xl text-center flex flex-col justify-center items-center">
+                    <p class="font-serif text-salon-text font-bold leading-relaxed">そのお悩み、<br><span class="text-salon-gold">Lumière</span>に<br>お任せください。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features / About -->
+    <section id="about" class="py-24 bg-salon-bg relative overflow-hidden">
+        <div class="absolute right-0 top-10 w-96 h-96 bg-white rounded-full mix-blend-multiply blur-3xl opacity-50"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <span class="text-salon-gold text-sm tracking-widest font-serif">ABOUT US</span>
+                <h2 class="font-serif text-2xl md:text-3xl mt-2 mb-4">ルミエールが選ばれる理由</h2>
+            </div>
+
+            <!-- Feature 1 -->
+            <div class="flex flex-col md:flex-row items-center gap-10 mb-20 fade-in-up">
+                <div class="w-full md:w-1/2 aspect-square md:aspect-[4/3] rounded-[30px] overflow-hidden shadow-lg border-4 border-white relative">
+                    <img src="./images/salon_counseling.png" alt="丁寧なカウンセリング" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="text-salon-gold font-serif text-4xl mb-4 opacity-50">01</div>
+                    <h3 class="font-serif text-2xl mb-4">完全予約制・丁寧なカウンセリング</h3>
+                    <p class="text-gray-600 leading-loose font-light text-sm md:text-base">
+                        他のお客様と顔を合わせることのないプライベート空間です。<br>
+                        施術前には十分な時間をかけてカウンセリングを行い、その日の体調やお肌の状態、なりたい理想の姿を丁寧にヒアリングします。無理な勧誘は一切ございませんのでご安心ください。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="flex flex-col md:flex-row-reverse items-center gap-10 mb-20 fade-in-up">
+                <div class="w-full md:w-1/2 aspect-square md:aspect-[4/3] rounded-[30px] overflow-hidden shadow-lg border-4 border-white relative">
+                    <img src="./images/salon_facial.png" alt="一人ひとりに合わせた施術" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="text-salon-gold font-serif text-4xl mb-4 opacity-50">02</div>
+                    <h3 class="font-serif text-2xl mb-4">一人ひとりに合わせたオーダーメイド施術</h3>
+                    <p class="text-gray-600 leading-loose font-light text-sm md:text-base">
+                        マニュアル通りの施術はいたしません。<br>
+                        熟練のハンドテクニックと厳選された美容機器・商材を組み合わせ、お客様一人ひとりに最適なアプローチをご提案。「結果」にこだわり、変化を実感できる施術を提供します。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="flex flex-col md:flex-row items-center gap-10 fade-in-up">
+                <div class="w-full md:w-1/2 aspect-square md:aspect-[4/3] rounded-[30px] overflow-hidden shadow-lg border-4 border-white relative">
+                    <img src="./images/salon_relax.png" alt="落ち着いた極上の空間" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="text-salon-gold font-serif text-4xl mb-4 opacity-50">03</div>
+                    <h3 class="font-serif text-2xl mb-4">心からリラックスできる極上の空間</h3>
+                    <p class="text-gray-600 leading-loose font-light text-sm md:text-base">
+                        一歩足を踏み入れれば、日常の喧騒を忘れられる癒しの空間。<br>
+                        心地よいアロマの香り、落ち着いた照明、肌触りの良いリネン類。五感すべてが満たされる至福の時間をお過ごしいただけます。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="py-24 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <span class="text-salon-gold text-sm tracking-widest font-serif">MENU</span>
+                <h2 class="font-serif text-2xl md:text-3xl mt-2 mb-4">メニュー・料金</h2>
+                <p class="text-sm text-gray-500">初回ご来店のお客様限定の特別体験メニューをご用意しております。</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex justify-center mb-10 border-b border-gray-200 fade-in-up">
+                <button class="px-6 py-3 font-medium text-salon-gold border-b-2 border-salon-gold transition">初回体験</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-in-up">
+                <!-- Menu Card 1 -->
+                <div class="border border-salon-goldLight rounded-2xl p-6 hover:shadow-lg transition bg-salon-bg/30">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="px-3 py-1 bg-salon-gold text-white text-xs tracking-widest rounded-full mb-3 inline-block">FACIAL</span>
+                            <h3 class="font-bold text-lg">美肌小顔フェイシャル（60分）</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-6 font-light leading-relaxed">
+                        毛穴の汚れを優しく落とし、熟練のハンドマッサージで引き上げ。くすみが取れて透明感のある小顔へ導きます。
+                    </p>
+                    <div class="flex items-end justify-between border-t border-gray-200 pt-4">
+                        <span class="text-xs text-gray-500">通常 ¥11,000 →</span>
+                        <div class="text-salon-gold">
+                            <span class="text-sm">初回体験 </span>
+                            <span class="text-2xl font-serif font-bold">¥5,500</span><span class="text-xs">(税込)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Card 2 -->
+                <div class="border border-salon-goldLight rounded-2xl p-6 hover:shadow-lg transition bg-salon-bg/30">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="px-3 py-1 bg-salon-gold text-white text-xs tracking-widest rounded-full mb-3 inline-block">BODY</span>
+                            <h3 class="font-bold text-lg">全身アロマリンパトリートメント（90分）</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-6 font-light leading-relaxed">
+                        溜まった疲れやむくみをしっかりケア。お好きなアロマの香りに包まれながら、全身のリンパを深く流していきます。
+                    </p>
+                    <div class="flex items-end justify-between border-t border-gray-200 pt-4">
+                        <span class="text-xs text-gray-500">通常 ¥14,300 →</span>
+                        <div class="text-salon-gold">
+                            <span class="text-sm">初回体験 </span>
+                            <span class="text-2xl font-serif font-bold">¥7,700</span><span class="text-xs">(税込)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Menu Card 3 -->
+                <div class="border border-salon-goldLight rounded-2xl p-6 hover:shadow-lg transition bg-salon-bg/30">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="px-3 py-1 relative inline-block mb-3">
+                                <span class="bg-gradient-to-r from-salon-gold to-yellow-600 text-white text-xs tracking-widest rounded-full px-3 py-1 absolute inset-0 z-0"></span>
+                                <span class="relative z-10 text-white text-xs tracking-widest font-bold">1番人気👑 BODY & FACIAL</span>
+                            </span>
+                            <h3 class="font-bold text-lg">極上フルコーストータルビューティー（120分）</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-6 font-light leading-relaxed">
+                        フェイシャルとボディがセットになった贅沢コース。全身の疲れをリセットし、お顔の輝きも取り戻すご褒美プラン。
+                    </p>
+                    <div class="flex items-end justify-between border-t border-gray-200 pt-4">
+                        <span class="text-xs text-gray-500">通常 ¥22,000 →</span>
+                        <div class="text-salon-gold">
+                            <span class="text-sm">初回体験 </span>
+                            <span class="text-2xl font-serif font-bold">¥11,000</span><span class="text-xs">(税込)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 fade-in-up">
+                <a href="#reserve" class="inline-block border-2 border-salon-gold text-salon-gold hover:bg-salon-gold hover:text-white transition px-10 py-3 rounded-full tracking-widest text-sm">メニュー詳細をみる</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before / After (Atmosphere) & Voice -->
+    <section class="py-24 bg-salon-pink/30 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                
+                <div class="w-full lg:w-1/2 fade-in-up">
+                    <span class="text-salon-gold text-sm tracking-widest font-serif">VOICE</span>
+                    <h2 class="font-serif text-2xl md:text-3xl mt-2 mb-8">お客様からの嬉しいお声</h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Voice 1 -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm relative">
+                            <div class="text-salon-gold opacity-20 absolute top-4 left-4 text-4xl font-serif">"</div>
+                            <div class="relative z-10">
+                                <p class="text-gray-700 font-medium mb-3">翌日の化粧ノリが全然違いました！</p>
+                                <p class="text-sm text-gray-600 font-light mb-4 leading-relaxed">初めてのエステで緊張していましたが、とても柔らかい雰囲気で迎えていただき安心しました。マッサージが気持ちよすぎて寝てしまい、起きたら顔が引き締まっていて驚き！自分へのご褒美でまた通いたいです。</p>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden flex-shrink-0">
+                                        <!-- customer dummy icon logic here or just gray circle -->
+                                        <i class="fa-solid fa-user text-gray-400 mt-2 ml-3 text-lg"></i>
+                                    </div>
+                                    <div class="text-xs text-gray-500">
+                                        <p class="font-bold">M.K様（30代・会社員）</p>
+                                        <p>美肌小顔フェイシャル体験</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Voice 2 -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm relative">
+                            <div class="text-salon-gold opacity-20 absolute top-4 left-4 text-4xl font-serif">"</div>
+                            <div class="relative z-10">
+                                <p class="text-gray-700 font-medium mb-3">接客も施術も丁寧で、本当に癒やされます。</p>
+                                <p class="text-sm text-gray-600 font-light mb-4 leading-relaxed">力加減が絶妙で、ガチガチだった肩と首のコリがスッと軽くなりました。担当の方の知識が豊富で、自宅ケアのアドバイスまで頂けて嬉しかったです。完全個室なので周りを気にせずリラックスできます。</p>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden flex-shrink-0">
+                                        <i class="fa-solid fa-user text-gray-400 mt-2 ml-3 text-lg"></i>
+                                    </div>
+                                    <div class="text-xs text-gray-500">
+                                        <p class="font-bold">A.S様（40代・主婦）</p>
+                                        <p>全身アロマリンパ体験</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/2 fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="aspect-square md:aspect-[4/5] rounded-[30px] overflow-hidden shadow-xl border-4 border-white relative">
+                        <img src="./images/salon_voice.png" alt="輝く笑顔のお客様のイメージ" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent p-8 text-white">
+                            <h3 class="font-serif text-xl mb-2">次は、あなたが輝く番です。</h3>
+                            <p class="text-sm font-light">※効果には個人差があります</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flow -->
+    <section id="flow" class="py-24 bg-salon-bg">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <span class="text-salon-gold text-sm tracking-widest font-serif">FLOW</span>
+                <h2 class="font-serif text-2xl md:text-3xl mt-2 mb-4">ご来店の流れ</h2>
+            </div>
+
+            <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-salon-goldLight">
+                
+                <!-- Flow 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group fade-in-up">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-white border-2 border-salon-gold text-salon-gold font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 font-serif">1</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <h4 class="font-bold text-lg mb-2 text-salon-text">ご予約（LINE/WEB）</h4>
+                        <p class="text-sm text-gray-600 font-light">公式LINE、または予約フォームよりご希望の日時をお選びください。お悩みなどの事前相談もLINEで承ります。</p>
+                    </div>
+                </div>
+
+                <!-- Flow 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group fade-in-up">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-white border-2 border-salon-gold text-salon-gold font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 font-serif">2</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <h4 class="font-bold text-lg mb-2 text-salon-text">ご来店・カウンセリング</h4>
+                        <p class="text-sm text-gray-600 font-light">ウェルカムティを召し上がりながら、お肌や身体の状態、ご要望を丁寧にヒアリングいたします。</p>
+                    </div>
+                </div>
+
+                <!-- Flow 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group fade-in-up">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-white border-2 border-salon-gold text-salon-gold font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 font-serif">3</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <h4 class="font-bold text-lg mb-2 text-salon-text">お着替え・施術</h4>
+                        <p class="text-sm text-gray-600 font-light">専用のガウンにお着替え後、一人ひとりに合わせた施術で至福の時間をお過ごしください。強さのご希望も都度伺います。</p>
+                    </div>
+                </div>
+
+                <!-- Flow 4 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group fade-in-up">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-white border-2 border-salon-gold text-salon-gold font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 font-serif">4</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <h4 class="font-bold text-lg mb-2 text-salon-text">アフターティー・お支度</h4>
+                        <p class="text-sm text-gray-600 font-light">施術後はメイクスペースをご利用可能（ドライヤー・アイロン完備）。ハーブティーを飲みながら、ホームケアのアドバイスをいたします。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in-up">
+                <span class="text-salon-gold text-sm tracking-widest font-serif">FAQ</span>
+                <h2 class="font-serif text-2xl md:text-3xl mt-2 mb-4">よくあるご質問</h2>
+            </div>
+            
+            <div class="space-y-4 fade-in-up">
+                <div class="border-b border-gray-200 faq-item">
+                    <button class="w-full text-left py-5 font-bold flex justify-between items-center focus:outline-none" onclick="this.parentElement.classList.toggle('faq-open')">
+                        <span class="font-medium">無理な勧誘はされませんか？</span>
+                        <span class="faq-icon text-salon-gold"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="text-sm text-gray-600 font-light leading-relaxed pr-8">
+                            当サロンでは、コース契約や化粧品の無理な勧誘は一切行っておりません。その都度払い（都度払い）でのご利用も多くのお客様に選ばれております。安心してご来店ください。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-200 faq-item">
+                    <button class="w-full text-left py-5 font-bold flex justify-between items-center focus:outline-none" onclick="this.parentElement.classList.toggle('faq-open')">
+                        <span class="font-medium">メイクをしたまま行っても大丈夫ですか？</span>
+                        <span class="faq-icon text-salon-gold"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="text-sm text-gray-600 font-light leading-relaxed pr-8">
+                            はい、大丈夫です。フェイシャルの場合はこちらでクレンジングを行います。お帰りの際にメイクをされる方は、ご自身のメイク道具をお持ちください（基礎化粧品はご用意しております）。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-200 faq-item">
+                    <button class="w-full text-left py-5 font-bold flex justify-between items-center focus:outline-none" onclick="this.parentElement.classList.toggle('faq-open')">
+                        <span class="font-medium">クレジットカードは使えますか？</span>
+                        <span class="faq-icon text-salon-gold"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="text-sm text-gray-600 font-light leading-relaxed pr-8">
+                            VISA、MasterCard、JCB、AMEXのご利用が可能です。その他PayPayなど一部QRコード決済にも対応しております。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info & Access -->
+    <section class="py-24 bg-salon-bg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-8 md:p-14 shadow-sm border border-salon-goldLight flex flex-col lg:flex-row gap-12 fade-in-up">
+                
+                <div class="lg:w-1/2">
+                    <h2 class="font-serif text-2xl font-bold mb-6 text-salon-text">Salon Information</h2>
+                    
+                    <div class="space-y-4 text-sm md:text-base font-light text-gray-700">
+                        <div class="flex border-b border-gray-100 pb-3">
+                            <span class="w-24 font-medium">サロン名</span>
+                            <span>Lumière (ルミエール)</span>
+                        </div>
+                        <div class="flex border-b border-gray-100 pb-3">
+                            <span class="w-24 font-medium">営業時間</span>
+                            <span>10:00 〜 20:00 (最終受付 18:30)</span>
+                        </div>
+                        <div class="flex border-b border-gray-100 pb-3">
+                            <span class="w-24 font-medium">定休日</span>
+                            <span>不定休</span>
+                        </div>
+                        <div class="flex border-b border-gray-100 pb-3">
+                            <span class="w-24 font-medium">住所</span>
+                            <span>
+                                〒000-0000<br>
+                                〇〇県〇〇市〇〇町1-23-4<br>
+                                ルイシャトレ2F 201号室<br>
+                            </span>
+                        </div>
+                        <div class="flex border-b border-gray-100 pb-3">
+                            <span class="w-24 font-medium">アクセス</span>
+                            <span>〇〇駅 東口より徒歩5分<br>※近隣にコインパーキングあり</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 aspect-video lg:aspect-auto bg-gray-200 rounded-xl overflow-hidden flex items-center justify-center">
+                    <div class="text-gray-400 text-center">
+                        <i class="fa-solid fa-map-location-dot text-4xl mb-2"></i>
+                        <p class="text-sm">Google Map 埋め込みエリア</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Reservation -->
+    <section id="reserve" class="py-24 bg-gradient-to-br from-salon-bg to-salon-pink relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-10 left-10 text-salon-gold font-serif text-[150px] opacity-5 leading-none pointer-events-none">L</div>
+        
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10 fade-in-up">
+            <h2 class="font-serif text-3xl md:text-4xl mb-6">Reservation</h2>
+            <p class="text-gray-600 mb-10 leading-loose text-sm md:text-base font-light">
+                ご予約・お問い合わせは、いつでも気軽にご連絡いただける<br class="hidden md:block">
+                「公式LINE」より24時間承っております。<br>
+                お肌のお悩みなどのご相談のみでも大歓迎です。
+            </p>
+            
+            <a href="#" class="inline-flex flex-col items-center justify-center bg-salon-line text-white px-10 py-5 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 mx-auto w-full md:w-auto min-w-[300px]">
+                <span class="flex items-center gap-3 text-xl md:text-2xl font-bold tracking-wider mb-1">
+                    <i class="fab fa-line text-3xl"></i> LINEで予約・無料相談
+                </span>
+                <span class="text-xs font-normal opacity-90">（タップして友だち追加）</span>
+            </a>
+            
+            <p class="text-xs text-gray-500 mt-6"><i class="fa-solid fa-envelope mr-1"></i> お電話はこちら: 000-0000-0000 (施術中は出られません)</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-100 py-10">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <a href="#" class="font-serif text-xl tracking-widest text-salon-gold mb-6 inline-block">Lumière</a>
+            <div class="flex justify-center space-x-6 mb-8 text-salon-text">
+                <a href="#" class="hover:text-salon-gold transition"><i class="fab fa-instagram text-xl"></i></a>
+            </div>
+            <p class="text-xs text-gray-400">&copy; 2026 Lumière Esthetic Salon. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating UI (Mobile Only) -->
+    <div class="md:hidden fixed bottom-0 left-0 w-full z-50 p-3 bg-white/90 backdrop-blur-sm border-t border-gray-100 shadow-[0_-5px_15px_-5px_rgba(0,0,0,0.1)]">
+        <a href="#reserve" class="block w-full bg-salon-line text-white text-center py-3.5 rounded-xl font-bold shadow-md active:scale-95 transition-transform flex items-center justify-center gap-2">
+            <i class="fab fa-line text-lg"></i> LINEで予約・相談
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // フェードインアニメーションの監視
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // 一度発火したら監視解除
+                    }
+                });
+            }, observerOptions);
+
+            const fadeEls = document.querySelectorAll('.fade-in-up');
+            fadeEls.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

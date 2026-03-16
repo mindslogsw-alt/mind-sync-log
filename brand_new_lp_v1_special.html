@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Sync Log | AIエージェント & Vibe Coding</title>
+    <style>
+        /* --- カラーパレット & 変数 --- */
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --neon-cyan: #00f3ff;
+            --neon-purple: #9d00ff;
+            --text-main: #ffffff;
+            --text-muted: #a0aab2;
+        }
+
+        /* --- リセット & ベース設定 --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #030303;
+            /* 漆黒に近いダークグレー */
+            color: var(--text-main);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- ファーストビュー (動画背景セクション) --- */
+        .hero {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* 動画の配置と色調補正 */
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            object-fit: cover;
+            opacity: 0.6;
+            /* 動画を少し暗くして高級感を出す */
+        }
+
+        /* テキストを読みやすくするグラデーションフィルター */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.95) 100%);
+            z-index: 1;
+        }
+
+        /* ヒーローテキスト配置 */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        /* タイトルデザイン */
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: 6px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff, #888888);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+        }
+
+        /* サブタイトル */
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        /* サイバーボタン (ホバーで光る) */
+        .cyber-btn {
+            padding: 18px 45px;
+            font-size: 1rem;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cyber-btn:hover::before {
+            left: 100%;
+        }
+
+        .cyber-btn:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.3);
+            transform: translateY(-3px);
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        /* --- About (事業内容) セクション --- */
+        .about {
+            padding: 120px 20px;
+            position: relative;
+            z-index: 3;
+            background: #030303;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        /* グラスモーフィズム・カード */
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 50px 40px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* カードのホバーエフェクト */
+        .glass-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* アイコン */
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .card-text {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        /* --- フッター --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            background: #030303;
+        }
+
+        /* --- レスポンシブ (スマホ対応) --- */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+                letter-spacing: 3px;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+            }
+
+            .about {
+                padding: 80px 20px;
+            }
+
+            .glass-card {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="assets/background.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Mind Sync Log</h1>
+            <p class="hero-subtitle">AIエージェントとVibe Codingが、ビジネスの常識を書き換える。</p>
+            <button class="cyber-btn">お問い合わせ・ご相談</button>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="about-container">
+            <div class="glass-card">
+                <div class="card-icon">✦</div>
+                <h3 class="card-title">Antigravity</h3>
+                <p class="card-text">自律型AIエージェントによる究極の業務自動化。あなたの思考をトレースし、24時間365日稼働する無敵の右腕を構築します。</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon">✧</div>
+                <h3 class="card-title">AI Talent</h3>
+                <p class="card-text">南条ミリをはじめとする、高度な世界観を持つAIインフルエンサーの開発。クリエイティブ制作からSNS運用までを自動化。</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon">⚡</div>
+                <h3 class="card-title">Vibe Coding</h3>
+                <p class="card-text">プログラミング言語ではなく「対話」でシステムを組み上げる。従来の数分の一のコストと期間で次世代のWeb UIを実装します。</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Mind Sync Log. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
